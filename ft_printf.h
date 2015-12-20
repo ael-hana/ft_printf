@@ -13,7 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdlib.h>
-# include "libft.h"
+# include "libft/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
 typedef struct			t_list_params
@@ -23,12 +23,27 @@ typedef struct			t_list_params
 	char				*prec;
 	char				*modifi;
 }						t_list_p;
-typedef unsigned int	(tab_f)(t_list_p *, void *);
+
+typedef int				(tab_f)(t_list_p *, void *);
 int						ft_printf(const char *format, ...)
 						__attribute__ ((format (printf, 1, 2)));
-unsigned int			ft_putstr_ret_len(t_list_p *list, void *params);
-void					ft_printf_op_c_unicode(void *dest);
-unsigned int			ft_printf_p(t_list_p *list, void *params);
-unsigned int			ft_print_num_d(t_list_p *list, void *params);
+/*ft_printf_op_s.c*/
+int						ft_putstr_ret_len(t_list_p *list, void *params);
+/*end ft_printf_op_s.c*/
+
+int						ft_printf_op_c_unicode(t_list_p *list, void *dest);
+int						ft_printf_p(t_list_p *list, void *params);
+int						ft_print_num_d(t_list_p *list, void *params);
+
+/*ft_printf_op_c_unicode*/
 void					*ft_putstr_stop(char *str, char chr);
+int						ft_put_op_c_unicode(unsigned int c);
+int						ft_printf_op_c_unicode(t_list_p *list, void *params);
+/*end ft_printf_op_c_unicode*/
+/*ft_bit_wise*/
+int						size_bin(unsigned int chr);
+int						four_oct(unsigned int a);
+int						three_oct(unsigned int a);
+int						two_oct(unsigned int a);
+/*end ft_bit_wise*/
 #endif

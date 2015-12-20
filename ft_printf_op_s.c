@@ -21,10 +21,11 @@ void		*ft_putstr_stop(char *str, char chr)
 	return (NULL);
 }
 
-unsigned int	ft_putstr_ret_len(t_list_p *list, void *params)
+int	ft_putstr_ret_len(t_list_p *list, void *params)
 {
 	void		*ptr;
 
+	(void)list;
 	ft_putstr(ptr = va_arg(*(va_list *)params, char *));
-	return (ft_strlen(ptr));
+	return ((int)ft_strlen(ptr));
 }

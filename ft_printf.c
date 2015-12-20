@@ -26,19 +26,32 @@ int		ft_chrstr_po(char chr, char *search)
 	return (-1);
 }
 
+void	ft_error()
+{
+	exit (EXIT_FAILURE);
+}
+
 int				ft_printf(const char *format, ...)
 {
 	int				i;
 	t_list_p		*list = NULL;
-	unsigned int	len;
+	int				len;
 	char			params[] = "sSpdDioOuUxXcC";
 	va_list			ap;
-	tab_f			*oklm[] = {&ft_putstr_ret_len,
+	tab_f			*oklm[] = {&ft_putstr_ret_len, //%s
 					NULL,//%S
 					&ft_printf_p,//%p
 					&ft_print_num_d,//%d
-					NULL};
-
+					NULL,//%D
+					NULL,//%i
+					NULL,//%o
+					NULL,//%O
+					NULL,//u
+					NULL,//U
+					NULL,//x
+					NULL,//X
+					NULL,//c
+					&ft_printf_op_c_unicode};//%C
 	va_start(ap, format);
 	len = 0;
 	while (*format)
@@ -55,17 +68,17 @@ int				ft_printf(const char *format, ...)
 	va_end(ap);
 	return ((int)len);
 }
-
+/*
 int			main()
 {
 	int	i;
 
 	void	*ptr = "oklm";
 
-	i = ft_printf("Bonjour to%%ut monde %p %s%d\n", ptr, ptr, 42);
+	i = ft_printf("Bonjour to%%ut monde %p %s%d oklm ceci est un chr cheloux : \n", ptr, ptr, 42);
 	ft_putnbr(i);
 	ft_putstr("\n");
-	i =    printf("Bonjour to%%ut monde %p %s%d\n", ptr, ptr, 42);
+	i =    printf("Bonjour to%%ut monde %p %s%d oklm ceci est un chr cheloux : \n", ptr, ptr, 42);
 	ft_putnbr(i);
 	return (0);
-}
+}*/

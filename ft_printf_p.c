@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-unsigned int		ft_putnbr_ul_base16(unsigned long num)
+int					ft_putnbr_ul_base16(unsigned long num)
 {
 	char			*str;
 	unsigned int	i;
@@ -25,11 +25,12 @@ unsigned int		ft_putnbr_ul_base16(unsigned long num)
 	return (i + 1);
 }
 
-unsigned int		ft_printf_p(t_list_p *list, void *params)
+int					ft_printf_p(t_list_p *list, void *params)
 {
-	unsigned int	i;
+	int				i;
 
 	i = 2;
+	(void)list;
 	ft_putstr("0x");
 	i += ft_putnbr_ul_base16((unsigned long)va_arg(*(va_list *)params, void *));
 	return (i);

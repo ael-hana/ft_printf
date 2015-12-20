@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-unsigned int		ft_putnbr_ulong(unsigned long num)
+int		ft_putnbr_ulong(unsigned long num)
 {
 	unsigned int	i;
 
@@ -23,15 +23,16 @@ unsigned int		ft_putnbr_ulong(unsigned long num)
 	return (i + 1);
 }
 
-unsigned int		ft_print_num_d(t_list_p *list, void *params)
+int		ft_print_num_d(t_list_p *list, void *params)
 {
 	long	num;
 
+	(void)list;
 	num = (long)va_arg(*((va_list *)params), int);
 	if (num < 0)
 	{
 		ft_putchar('-');
 		return ((ft_putnbr_ulong(num) * -1) + 1);
 	}
-	return (ft_putnbr_ulong(num));
+	return ((int)ft_putnbr_ulong(num));
 }
