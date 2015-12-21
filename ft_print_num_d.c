@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/18 08:41:00 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/21 16:08:51 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_print_num_d(t_list_p *list, void *params)
 	if (num < 0)
 	{
 		ft_putchar('-');
-		return ((ft_putnbr_ulong(num) * -1) + 1);
+		return (ft_putnbr_ulong(num * -1) + 1);
 	}
 	return ((int)ft_putnbr_ulong(num));
 }

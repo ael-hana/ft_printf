@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:40:28 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/18 10:16:40 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/21 15:56:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	ft_putstr_ret_len(t_list_p *list, void *params)
 	void		*ptr;
 
 	(void)list;
-	ft_putstr(ptr = va_arg(*(va_list *)params, char *));
+	if (!(ptr = va_arg(*(va_list *)params, char *)))
+	{
+		ft_putstr("(null)");
+		return (6);
+	}ft_putstr(ptr);
 	return ((int)ft_strlen(ptr));
 }

@@ -6,11 +6,19 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/18 11:44:51 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/21 20:25:49 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int						ft_printf_poucent(t_list_p *list, void *params)
+{
+	(void) list;
+	(void) params;
+	ft_putchar('%');
+	return (1);
+}
 
 int		ft_chrstr_po(char chr, char *search)
 {
@@ -36,10 +44,10 @@ int				ft_printf(const char *format, ...)
 	int				i;
 	t_list_p		*list = NULL;
 	int				len;
-	char			params[] = "sSpdDioOuUxXcC";
+	char			params[] = "sSpdDioOuUxXcC%";
 	va_list			ap;
 	tab_f			*oklm[] = {&ft_putstr_ret_len, //%s
-					NULL,//%S
+					&ft_printf_op_s_unicode,//%S
 					&ft_printf_p,//%p
 					&ft_print_num_d,//%d
 					NULL,//%D
@@ -51,19 +59,25 @@ int				ft_printf(const char *format, ...)
 					NULL,//x
 					NULL,//X
 					NULL,//c
-					&ft_printf_op_c_unicode};//%C
+					&ft_printf_op_c_unicode,//%C
+					&ft_printf_poucent};
 	va_start(ap, format);
 	len = 0;
 	while (*format)
 	{
-		i = -2;
-		while ((*format == '%') && (0 <= (i = ft_chrstr_po(*++format, params))))
+		while ((*format == '%'))
 		{
-			len += oklm[i](list, /*va_arg(ap, void *)*/ &ap);
-			format++;
+			while (*++format == ' ');
+			if (-1 != (i = ft_chrstr_po(*format, params)))
+				len += oklm[i](list, /*va_arg(ap, void *)*/ &ap);
+			if (*format && i != -1)
+				format++;
 		}
-		ft_putchar(*format++);
-		len++;
+		if (*format)
+		{
+			ft_putchar(*format++);
+			len++;
+		}
 	}
 	va_end(ap);
 	return ((int)len);
@@ -72,13 +86,15 @@ int				ft_printf(const char *format, ...)
 int			main()
 {
 	int	i;
+	int ok;
 
-	void	*ptr = "oklm";
-
-	i = ft_printf("Bonjour to%%ut monde %p %s%d oklm ceci est un chr cheloux : \n", ptr, ptr, 42);
+	char *str = NULL;
+	i = ft_printf("{%S}", str);
 	ft_putnbr(i);
 	ft_putstr("\n");
-	i =    printf("Bonjour to%%ut monde %p %s%d oklm ceci est un chr cheloux : \n", ptr, ptr, 42);
-	ft_putnbr(i);
+	ok = printf("{%S}", str);
+	ft_putstr("\n");
+	ft_putnbr(ok);
+	ft_putstr("\n");
 	return (0);
 }*/
