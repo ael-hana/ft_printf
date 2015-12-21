@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/21 20:25:49 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/21 20:58:41 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int				ft_printf(const char *format, ...)
 					&ft_printf_op_s_unicode,//%S
 					&ft_printf_p,//%p
 					&ft_print_num_d,//%d
-					NULL,//%D
-					NULL,//%i
+					&ft_print_num_d_height,//%D
+					&ft_print_num_d,//%i
 					NULL,//%o
 					NULL,//%O
 					NULL,//u
@@ -88,11 +88,11 @@ int			main()
 	int	i;
 	int ok;
 
-	char *str = NULL;
-	i = ft_printf("{%S}", str);
+	char str = -42;
+	i = ft_printf("%i", str);
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("{%S}", str);
+	ok = printf("%i", str);
 	ft_putstr("\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");

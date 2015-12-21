@@ -6,13 +6,13 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/21 16:08:51 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/21 20:47:14 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_putnbr_ulong(unsigned long num)
+int					ft_putnbr_ulong(unsigned long int num)
 {
 	unsigned int	i;
 
@@ -23,9 +23,9 @@ int		ft_putnbr_ulong(unsigned long num)
 	return (i + 1);
 }
 
-int		ft_print_num_d(t_list_p *list, void *params)
+int					ft_print_num_d(t_list_p *list, void *params)
 {
-	long	num;
+	long int		num;
 
 	(void)list;
 	num = (long)va_arg(*((va_list *)params), int);
@@ -35,4 +35,18 @@ int		ft_print_num_d(t_list_p *list, void *params)
 		return (ft_putnbr_ulong(num * -1) + 1);
 	}
 	return ((int)ft_putnbr_ulong(num));
+}
+
+int					ft_print_num_d_height(t_list_p *list, void *params)
+{
+	long int		num;
+
+	(void)list;
+	num = va_arg(*((va_list *)params), long int);
+	if (num < 0)
+	{
+		ft_putchar('-');
+		return (ft_putnbr_ulong(num * -1) + 1);
+	}
+	return (ft_putnbr_ulong(num));
 }
