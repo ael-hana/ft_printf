@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/21 20:44:53 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/22 21:48:38 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,22 @@ int						ft_printf(const char *format, ...)
 int						ft_printf_poucent(t_list_p *list, void *params);
 /*ft_printf_op_s.c*/
 int						ft_putstr_ret_len(t_list_p *list, void *params);
+int						ft_print_chr(t_list_p *list, void *params);
 /*end ft_printf_op_s.c*/
 
+/*ft_conv_base*/
+int						ft_print_op_o(t_list_p *list, void *params);
+int						ft_print_op_o_great(t_list_p *list, void *params);
+int						ft_print_op_x(t_list_p *list, void *params);
+int						ft_print_op_x_great(t_list_p *list, void *params);
+/*end ft_conv_base*/
 int						ft_printf_op_s_unicode(t_list_p *list, void *params);
 int						ft_printf_op_c_unicode(t_list_p *list, void *params);
 int						ft_printf_p(t_list_p *list, void *params);
 int						ft_print_num_d(t_list_p *list, void *params);
-int						ft_print_num_d_height(t_list_p *list, void *params);
+int						ft_print_num_d_height_long(t_list_p *list, void *params);
+int						ft_print_num_d_height_u_long(t_list_p *list, void *params);
+int						ft_print_num_d_height_u_int(t_list_p *list, void *params);
 
 /*ft_printf_op_c_unicode*/
 void					*ft_putstr_stop(char *str, char chr);

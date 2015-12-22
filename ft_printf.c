@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/21 20:58:41 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/22 21:48:55 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ int				ft_printf(const char *format, ...)
 					&ft_printf_op_s_unicode,//%S
 					&ft_printf_p,//%p
 					&ft_print_num_d,//%d
-					&ft_print_num_d_height,//%D
+					&ft_print_num_d_height_long,//%D
 					&ft_print_num_d,//%i
-					NULL,//%o
-					NULL,//%O
-					NULL,//u
-					NULL,//U
-					NULL,//x
-					NULL,//X
-					NULL,//c
+					&ft_print_op_o,//%o
+					&ft_print_op_o_great,//%O
+					&ft_print_num_d_height_u_int,//u
+					&ft_print_num_d_height_u_long,//U
+					&ft_print_op_x,//x
+					&ft_print_op_x_great,//X
+					&ft_print_chr,//c
 					&ft_printf_op_c_unicode,//%C
 					&ft_printf_poucent};
 	va_start(ap, format);
@@ -88,12 +88,12 @@ int			main()
 	int	i;
 	int ok;
 
-	char str = -42;
-	i = ft_printf("%i", str);
+	char str = 42;
+	i = ft_printf("%x", str);
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("%i", str);
-	ft_putstr("\n");
+	ok = printf("%x", str);
+	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
 	return (0);
