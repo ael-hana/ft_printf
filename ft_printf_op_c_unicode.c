@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 02:08:30 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/18 11:57:21 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 08:10:20 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			ft_printf_op_c_unicode(t_list_p *list, void *params)
 int			ft_put_op_c_unicode(unsigned int c)
 {
 	int		ret;
-	int					bits;
+	int		bits;
 
 	bits = size_bin(c);
 	ret = 0;

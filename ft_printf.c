@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 05:59:57 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 08:28:03 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		ft_error()
 
 int				ft_printf(const char *format, ...)
 {
-	int			i;
+	int				i;
 	t_list_p		*list = NULL;
 	int				len;
 	char			params[] = "sSpdDioOuUxXcC%";
@@ -92,11 +92,11 @@ int			main()
 	long int str;
 
 	str = 2147483648;
-	i = ft_printf("%ld", str);
+	i = ft_printf("%d", str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("%ld", str);
+	ok = printf("%d", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");

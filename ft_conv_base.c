@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 06:25:44 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 07:49:05 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,20 @@ int		ft_print_op_o_great(t_list_p *list, void *params)
 
 int		ft_print_op_x(t_list_p *list, void *params)
 {
-	(void) list;
-	return (ft_printf_base(va_arg(*((va_list *)params), unsigned int), 16, 0, 1));
+	if (list && list->modifi_l == 1)
+		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long int), 16, 0, 1));
+	else if (list && list->modifi_l == 2)
+		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long long int), 16, 0, 1));
+	else
+		return (ft_printf_base(va_arg(*((va_list *)params), unsigned int), 16, 0, 1));
 }
 
 int		ft_print_op_x_great(t_list_p *list, void *params)
 {
-	(void) list;
-	return (ft_printf_base(va_arg(*((va_list *)params), unsigned int), 16, 0, 0));
+	if (list && list->modifi_l == 1)
+		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long int), 16, 0, 0));
+	else if (list && list->modifi_l == 2)
+		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long long int), 16, 0, 0));
+	else
+		return (ft_printf_base(va_arg(*((va_list *)params), unsigned int), 16, 0, 0));
 }
