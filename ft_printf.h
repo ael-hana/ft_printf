@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/22 21:48:38 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 06:25:47 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ typedef struct			t_list_params
 	char				*flags;
 	char				*champ;
 	char				*prec;
-	char				*modifi;
+	char				modifi_l;
+	char				modifi_L;
+	char				modifi_h;
 }						t_list_p;
 
 typedef int				(tab_f)(t_list_p *, void *);
@@ -46,6 +48,7 @@ int						ft_print_num_d(t_list_p *list, void *params);
 int						ft_print_num_d_height_long(t_list_p *list, void *params);
 int						ft_print_num_d_height_u_long(t_list_p *list, void *params);
 int						ft_print_num_d_height_u_int(t_list_p *list, void *params);
+t_list_p				*ft_fill_list(char **str, t_list_p *list);
 
 /*ft_printf_op_c_unicode*/
 void					*ft_putstr_stop(char *str, char chr);
@@ -58,4 +61,5 @@ int						four_oct(unsigned int a);
 int						three_oct(unsigned int a);
 int						two_oct(unsigned int a);
 /*end ft_bit_wise*/
+void					ft_error();
 #endif

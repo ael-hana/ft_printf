@@ -6,13 +6,13 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/22 21:23:50 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 06:09:48 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int					ft_putnbr_ulong(unsigned long int num)
+int					ft_putnbr_ulong(unsigned long long int num)
 {
 	unsigned int	i;
 
@@ -25,10 +25,14 @@ int					ft_putnbr_ulong(unsigned long int num)
 
 int					ft_print_num_d(t_list_p *list, void *params)
 {
-	long int		num;
+	long long int		num;
 
-	(void)list;
-	num = (long)va_arg(*((va_list *)params), int);
+	if (list && list->modifi_l == 1)
+		num = va_arg(*((va_list *)params), long int);
+	else if (list && list->modifi_l == 2)
+		num = va_arg(*((va_list *)params), long long int);
+	else
+		num = va_arg(*((va_list *)params), int);
 	if (num < 0)
 	{
 		ft_putchar('-');
@@ -38,17 +42,17 @@ int					ft_print_num_d(t_list_p *list, void *params)
 }
 
 
-int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
+int							ft_print_num_d_height_u_int(t_list_p *list,
+		void *params)
 {
-	long int		num;
+	unsigned long long int	num;
 
-	(void)list;
-	num = va_arg(*((va_list *)params), unsigned int);
-	if (num < 0)
-	{
-		ft_putchar('-');
-		return (ft_putnbr_ulong(num * -1) + 1);
-	}
+	if (list && list->modifi_l == 1)
+		num = va_arg(*((va_list *)params), unsigned long int);
+	else if (list && list->modifi_l == 2)
+		num = va_arg(*((va_list *)params), unsigned long long int);
+	else
+		num = va_arg(*((va_list *)params), unsigned int);
 	return (ft_putnbr_ulong(num));
 }
 

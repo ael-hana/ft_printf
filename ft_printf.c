@@ -6,13 +6,13 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/22 21:48:55 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 05:59:57 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int						ft_printf_poucent(t_list_p *list, void *params)
+int			ft_printf_poucent(t_list_p *list, void *params)
 {
 	(void) list;
 	(void) params;
@@ -20,7 +20,7 @@ int						ft_printf_poucent(t_list_p *list, void *params)
 	return (1);
 }
 
-int		ft_chrstr_po(char chr, char *search)
+int			ft_chrstr_po(char chr, char *search)
 {
 	int	i;
 
@@ -34,14 +34,14 @@ int		ft_chrstr_po(char chr, char *search)
 	return (-1);
 }
 
-void	ft_error()
+void		ft_error()
 {
 	exit (EXIT_FAILURE);
 }
 
 int				ft_printf(const char *format, ...)
 {
-	int				i;
+	int			i;
 	t_list_p		*list = NULL;
 	int				len;
 	char			params[] = "sSpdDioOuUxXcC%";
@@ -68,8 +68,9 @@ int				ft_printf(const char *format, ...)
 		while ((*format == '%'))
 		{
 			while (*++format == ' ');
+			list = ft_fill_list((char **)&format, list);
 			if (-1 != (i = ft_chrstr_po(*format, params)))
-				len += oklm[i](list, /*va_arg(ap, void *)*/ &ap);
+				len += oklm[i](list, &ap);
 			if (*format && i != -1)
 				format++;
 		}
@@ -88,11 +89,14 @@ int			main()
 	int	i;
 	int ok;
 
-	char str = 42;
-	i = ft_printf("%x", str);
+	long int str;
+
+	str = 2147483648;
+	i = ft_printf("%ld", str);
+	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("%x", str);
+	ok = printf("%ld", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
