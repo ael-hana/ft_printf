@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 08:28:03 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 13:11:30 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ int			main()
 	int	i;
 	int ok;
 
-	long int str;
+	long str;
 
-	str = 2147483648;
-	i = ft_printf("%d", str);
+	str = -99992147483649;
+	i = ft_printf("%jd", str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("%d", str);
+	ok = printf("%jd", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");

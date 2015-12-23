@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 07:49:05 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/23 10:02:21 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		ft_print_op_o(t_list_p *list, void *params)
 		return (ft_printf_base((unsigned long)va_arg(*((va_list *)params), unsigned long int), 8, 0, 0));
 	else if (list && list->modifi_l == 2)
 		return (ft_printf_base((unsigned long)va_arg(*((va_list *)params), unsigned long long int), 8, 0, 0));
+	else if (list && list->modifi_h == 2)
+		return (ft_printf_base((unsigned char)va_arg(*((va_list *)params), int), 8, 0, 0));
 	else
 		return (ft_printf_base((unsigned long)va_arg(*((va_list *)params), unsigned int), 8, 0, 0));
 }
@@ -49,6 +51,8 @@ int		ft_print_op_x(t_list_p *list, void *params)
 		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long int), 16, 0, 1));
 	else if (list && list->modifi_l == 2)
 		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long long int), 16, 0, 1));
+	else if (list && list->modifi_h == 2)
+		return (ft_printf_base((unsigned char)va_arg(*((va_list *)params), int), 16, 0, 1));
 	else
 		return (ft_printf_base(va_arg(*((va_list *)params), unsigned int), 16, 0, 1));
 }
@@ -59,6 +63,8 @@ int		ft_print_op_x_great(t_list_p *list, void *params)
 		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long int), 16, 0, 0));
 	else if (list && list->modifi_l == 2)
 		return (ft_printf_base(va_arg(*((va_list *)params), unsigned long long int), 16, 0, 0));
+	else if (list && list->modifi_h == 2)
+		return (ft_printf_base((unsigned char)va_arg(*((va_list *)params), int), 16, 0, 0));
 	else
 		return (ft_printf_base(va_arg(*((va_list *)params), unsigned int), 16, 0, 0));
 }
