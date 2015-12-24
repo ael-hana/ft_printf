@@ -6,13 +6,13 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 13:11:28 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/24 07:27:22 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int					ft_putnbr_ulong(unsigned long num)
+int					ft_putnbr_ulong(unsigned long long int num)
 {
 	unsigned int	i;
 
@@ -25,7 +25,8 @@ int					ft_putnbr_ulong(unsigned long num)
 
 int					ft_print_num_d(t_list_p *list, void *params)
 {
-	long		num;
+	long long int	num;
+	int				i;
 
 	if (list && list->modifi_l == 1)
 		num = va_arg(*((va_list *)params), long int);
@@ -34,22 +35,24 @@ int					ft_print_num_d(t_list_p *list, void *params)
 	else if (list && list->modifi_h == 2)
 		num = (char)va_arg(*((va_list *)params), int);
 	else if (list && list->modifi_j == 1)
-		num = va_arg(*((va_list *)params),long);
+		num = va_arg(*((va_list *)params),long int);
+	else if (list && list->modifi_z == 1)
+		num = va_arg(*((va_list *)params), size_t);
 	else
 		num = va_arg(*((va_list *)params), int);
 	if (num < 0)
 	{
+		i = ft_write_space(list->modifi_atoi - (ft_putnbr_ulong_len(num * -1) + 1));
 		ft_putchar('-');
-		return (ft_putnbr_ulong(num * -1) + 1);
+		return (ft_putnbr_ulong(num * -1) + 1 + i);
 	}
-	return ((int)ft_putnbr_ulong(num));
+	i = ft_write_space(list->modifi_atoi - ft_putnbr_ulong_len(num));
+	return ((int)ft_putnbr_ulong(num) + i);
 }
 
-
-int							ft_print_num_d_height_u_int(t_list_p *list,
-		void *params)
+int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
 {
-	long					num;
+	long			num;
 
 	if (list && list->modifi_l == 1)
 		num = va_arg(*((va_list *)params), unsigned long int);
@@ -59,6 +62,8 @@ int							ft_print_num_d_height_u_int(t_list_p *list,
 		num = (unsigned char)va_arg(*((va_list *)params), int);
 	else if (list && list->modifi_j == 1)
 		num = (unsigned long)va_arg(*((va_list *)params), long);
+	else if (list && list->modifi_z == 1)
+		num = va_arg(*((va_list *)params), size_t);
 	else
 		num = va_arg(*((va_list *)params), unsigned int);
 	return (ft_putnbr_ulong(num));

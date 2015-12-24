@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 13:11:31 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/24 05:20:42 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@
 # include <stdio.h>
 typedef struct			t_list_params
 {
-	char				*flags;
+/*	char				*flags;
 	char				*champ;
-	char				*prec;
+	char				*prec;*/
+	char				modifi_atoi;
 	char				modifi_l;
 	char				modifi_L;
 	char				modifi_h;
 	char				modifi_j;
+	char				modifi_z;
 }						t_list_p;
 
 typedef int				(tab_f)(t_list_p *, void *);
@@ -63,4 +65,9 @@ int						three_oct(unsigned int a);
 int						two_oct(unsigned int a);
 /*end ft_bit_wise*/
 void					ft_error();
+
+/*ft_len_func*/
+int						ft_putnbr_ulong_len(unsigned long long int num);
+int						ft_write_space(long long int num);
+/*end ft_len_func*/
 #endif

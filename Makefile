@@ -6,7 +6,7 @@
 #    By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/20 00:58:44 by ael-hana          #+#    #+#              #
-#    Updated: 2015/12/23 06:00:48 by ael-hana         ###   ########.fr        #
+#    Updated: 2015/12/24 04:06:27 by ael-hana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FLAGS = -Wall -Wextra -Werror
 
 SRC = ft_bit_wise.c ft_print_num_d.c ft_printf.c ft_printf_op_c_unicode.c \
 		ft_printf_op_s.c ft_printf_p.c ft_printf_op_s_unicode.c ft_conv_base.c \
-		ft_modif_list.c
+		ft_modif_list.c ft_len_func.c
 
 SRCLIBFT =    ft_atoi.c \
     ft_bzero.c \

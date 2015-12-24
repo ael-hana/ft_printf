@@ -6,11 +6,29 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 13:11:30 by ael-hana         ###   ########.fr       */
+/*   Updated: 2015/12/24 07:27:22 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+tab_f			*oklm[] = {
+					&ft_putstr_ret_len, //%s
+					&ft_printf_op_s_unicode,//%S
+					&ft_printf_p,//%p
+					&ft_print_num_d,//%d
+					&ft_print_num_d_height_long,//%D
+					&ft_print_num_d,//%i
+					&ft_print_op_o,//%o
+					&ft_print_op_o_great,//%O
+					&ft_print_num_d_height_u_int,//u
+					&ft_print_num_d_height_u_long,//U
+					&ft_print_op_x,//x
+					&ft_print_op_x_great,//X
+					&ft_print_chr,//c
+					&ft_printf_op_c_unicode,//%C
+					&ft_printf_poucent
+							};
 
 int			ft_printf_poucent(t_list_p *list, void *params)
 {
@@ -46,21 +64,6 @@ int				ft_printf(const char *format, ...)
 	int				len;
 	char			params[] = "sSpdDioOuUxXcC%";
 	va_list			ap;
-	tab_f			*oklm[] = {&ft_putstr_ret_len, //%s
-					&ft_printf_op_s_unicode,//%S
-					&ft_printf_p,//%p
-					&ft_print_num_d,//%d
-					&ft_print_num_d_height_long,//%D
-					&ft_print_num_d,//%i
-					&ft_print_op_o,//%o
-					&ft_print_op_o_great,//%O
-					&ft_print_num_d_height_u_int,//u
-					&ft_print_num_d_height_u_long,//U
-					&ft_print_op_x,//x
-					&ft_print_op_x_great,//X
-					&ft_print_chr,//c
-					&ft_printf_op_c_unicode,//%C
-					&ft_printf_poucent};
 	va_start(ap, format);
 	len = 0;
 	while (*format)
@@ -89,14 +92,14 @@ int			main()
 	int	i;
 	int ok;
 
-	long str;
+	int str;
 
-	str = -99992147483649;
-	i = ft_printf("%jd", str);
+	str = 348;
+	i = ft_printf("%d", str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("%jd", str);
+	ok = printf("%d", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
