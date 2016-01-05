@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 02:08:30 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/23 08:10:20 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/05 22:45:04 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ int			ft_printf_op_c_unicode(t_list_p *list, void *params)
 {
 	(void)list;
 	return (ft_put_op_c_unicode(va_arg(*(va_list *)params, unsigned int)));
+}
+
+int			ft_strlen_unicode(unsigned int *c)
+{
+	int		len;
+
+	len = 0;
+	while (*c)
+	{
+		len += size_bin(*c);
+		c++;
+	}
+	return (len);
 }
 
 int			ft_put_op_c_unicode(unsigned int c)

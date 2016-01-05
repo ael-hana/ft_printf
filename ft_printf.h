@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/24 05:20:42 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/05 22:45:04 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_list_p				*ft_fill_list(char **str, t_list_p *list);
 void					*ft_putstr_stop(char *str, char chr);
 int						ft_put_op_c_unicode(unsigned int c);
 int						ft_printf_op_c_unicode(t_list_p *list, void *params);
+int						ft_strlen_unicode(unsigned int *c);
 /*end ft_printf_op_c_unicode*/
 /*ft_bit_wise*/
 int						size_bin(unsigned int chr);

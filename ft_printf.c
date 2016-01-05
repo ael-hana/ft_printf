@@ -6,14 +6,14 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2015/12/24 07:27:22 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/05 22:45:02 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 tab_f			*oklm[] = {
-					&ft_putstr_ret_len, //%s
+					&ft_putstr_ret_len,//%s
 					&ft_printf_op_s_unicode,//%S
 					&ft_printf_p,//%p
 					&ft_print_num_d,//%d
@@ -74,6 +74,8 @@ int				ft_printf(const char *format, ...)
 			list = ft_fill_list((char **)&format, list);
 			if (-1 != (i = ft_chrstr_po(*format, params)))
 				len += oklm[i](list, &ap);
+			else
+				len += ft_write_space(*format ? list->modifi_atoi - 1 : list->modifi_atoi);
 			if (*format && i != -1)
 				format++;
 		}
@@ -92,14 +94,14 @@ int			main()
 	int	i;
 	int ok;
 
-	int str;
+	void *str;
 
-	str = 348;
-	i = ft_printf("%d", str);
+	str = 0;
+	i = ft_printf("{%15R}", str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("%d", str);
+	ok = printf("{%15R}", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
