@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/05 11:42:57 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/06 00:54:04 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_list_p		*ft_init_list(t_list_p *list)
 	list->modifi_h = 0;
 	list->modifi_j = 0;
 	list->modifi_z = 0;
+	list->chr = 0;
 	return (list);
 }
 
@@ -32,8 +33,16 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 	if (!(ptr = (t_list_p *)malloc(sizeof(t_list_p))))
 		ft_error();
 	ptr = ft_init_list(ptr);
+	ft_putstr("\nici 42\n");
 	if (ft_isdigit(**str) || (**str == '-' && ft_isdigit(*(*str + 1))))
 	{
+	ft_putstr("\nici 42\n");
+		while (**str == '0')
+		{
+			ptr->chr++;
+			(*str)++;
+		}
+	ft_putstr("\nici 42\n");
 		ptr->modifi_atoi = ft_atoi(*str);
 		*str += ptr->modifi_atoi < 0 ?
 			(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :

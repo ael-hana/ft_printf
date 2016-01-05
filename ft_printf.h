@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/05 22:45:04 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/06 00:54:07 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct			t_list_params
 	char				modifi_h;
 	char				modifi_j;
 	char				modifi_z;
+	char				chr;
 }						t_list_p;
 
 typedef int				(tab_f)(t_list_p *, void *);
@@ -69,6 +70,6 @@ void					ft_error();
 
 /*ft_len_func*/
 int						ft_putnbr_ulong_len(unsigned long long int num);
-int						ft_write_space(long long int num);
+int						ft_write_space(long long int num, t_list_p *list);
 /*end ft_len_func*/
 #endif

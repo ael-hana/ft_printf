@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/05 22:45:02 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/06 00:54:03 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int				ft_printf(const char *format, ...)
 			if (-1 != (i = ft_chrstr_po(*format, params)))
 				len += oklm[i](list, &ap);
 			else
-				len += ft_write_space(*format ? list->modifi_atoi - 1 : list->modifi_atoi);
+				len += ft_write_space(*format ? list->modifi_atoi - 1 : list->modifi_atoi, list);
 			if (*format && i != -1)
 				format++;
 		}
@@ -88,22 +88,23 @@ int				ft_printf(const char *format, ...)
 	va_end(ap);
 	return ((int)len);
 }
-/*
+
+
 int			main()
 {
 	int	i;
 	int ok;
 
-	void *str;
+	int str;
 
-	str = 0;
-	i = ft_printf("{%15R}", str);
+	str = 42;
+	i = ft_printf("{%010d}", str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("{%15R}", str);
+	ok = printf("{%010d}", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
 	return (0);
-}*/
+}
