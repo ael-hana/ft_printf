@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/06 06:49:47 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/06 20:12:22 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int				ft_printf(const char *format, ...)
 	va_end(ap);
 	return ((int)len);
 }
-
-int			main()
+/*
+int			main(void)
 {
 	int	i;
 	int ok;
@@ -108,4 +108,4 @@ int			main()
 	ft_putnbr(ok);
 	ft_putstr("\n");
 	return (0);
-}
+}*/
