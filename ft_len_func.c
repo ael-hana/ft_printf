@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 03:47:05 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/06 00:54:05 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/06 06:49:49 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,29 @@ int					ft_write_space(long long int num, t_list_p *list)
 	int				i;
 
 	i = 0;
-	while (num > 0)
+	if (!list)
+		return (0);
+	//if (num >= 0)
+		list->modifi_atoi = 0;
+	ft_putstr("oklm : ");
+	ft_putnbr(num);
+	ft_putstr("ICI\n");
+	while (num > i)
 	{
 		if (list->chr)
 			write(1, "0",1);
 		else
 			write(1, " ",1);
-		num--;
 		i++;
 	}
 	return (i);
+}
+
+int		ft_len_base(unsigned long long int num, int base)
+{
+	if (num / base)
+		return (1 + ft_len_base(num / base, base));
+	return (1);
 }
 
 int					ft_putnbr_ulong_len(unsigned long long int num)

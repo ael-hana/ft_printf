@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/06 00:54:07 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/06 06:49:51 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
+
 typedef struct			t_list_params
 {
 /*	char				*flags;
@@ -55,7 +56,6 @@ int						ft_print_num_d_height_u_int(t_list_p *list, void *params);
 t_list_p				*ft_fill_list(char **str, t_list_p *list);
 
 /*ft_printf_op_c_unicode*/
-void					*ft_putstr_stop(char *str, char chr);
 int						ft_put_op_c_unicode(unsigned int c);
 int						ft_printf_op_c_unicode(t_list_p *list, void *params);
 int						ft_strlen_unicode(unsigned int *c);
@@ -71,5 +71,6 @@ void					ft_error();
 /*ft_len_func*/
 int						ft_putnbr_ulong_len(unsigned long long int num);
 int						ft_write_space(long long int num, t_list_p *list);
+int						ft_len_base(unsigned long long int num, int base);
 /*end ft_len_func*/
 #endif

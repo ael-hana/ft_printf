@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 02:25:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/05 11:52:08 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/06 06:49:48 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,24 @@ int					ft_printf_p(t_list_p *list, void *params)
 
 	num = (unsigned long)va_arg(*(va_list *)params, void *);
 	i = 2;
-	while (list->modifi_atoi > (i + ft_putnbr_ul_base16_len(num)))
-	{
-		i++;
-		write(1, " ", 1);
-	}
+	ft_putstr("oklm : ");
+	ft_putnbr(list->modifi_atoi);
+	ft_putstr("\nfin\n");
+	if (!list->chr)
+		i += ft_write_space(list->modifi_atoi - ft_putnbr_ul_base16_len(num) - 2, list);
 	ft_putstr("0x");
+	if (list->chr)
+		i += ft_write_space(list->modifi_atoi - ft_putnbr_ul_base16_len(num) - 2, list);
 	i += ft_putnbr_ul_base16(num);
-	while ((list->modifi_atoi * -1) > i)
+	ft_putstr("oklm : ");
+	ft_putnbr(list->modifi_atoi);
+	ft_putnbr(i);
+	ft_putstr("\nfin 2\n");
+	if (list->modifi_atoi < 0)
 	{
-		i++;
-		write(1, " ", 1);
+		ft_putstr("\ngjreioghiortehioriotio\n");
+		ft_putnbr(i);
+		i += ft_write_space(((list->modifi_atoi * -1) - i), list);
 	}
 	return (i);
 }
