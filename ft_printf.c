@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/06 20:12:22 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/07 04:13:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				ft_printf(const char *format, ...)
 	{
 		while ((*format == '%'))
 		{
-			while (*++format == ' ');
+//			while (*++format == ' ' || *format == '#' || *format == '+');
 			list = ft_fill_list((char **)&format, list);
 			if (-1 != (i = ft_chrstr_po(*format, params)))
 				len += oklm[i](list, &ap);
@@ -94,16 +94,16 @@ int				ft_printf(const char *format, ...)
 int			main(void)
 {
 	int	i;
-	int ok;
+	int	ok;
 
-	char	*str;
+	int	str;
 
 	str = 0;
-	i = ft_printf("{%-13p}", str);
+	i = ft_printf("{% 03d}", str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("{%-13p}", str);
+	ok = printf("{% 03d}", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");

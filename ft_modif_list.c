@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/06 01:36:22 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/07 04:12:35 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ t_list_p		*ft_init_list(t_list_p *list)
 	list->modifi_j = 0;
 	list->modifi_z = 0;
 	list->chr = 0;
+	list->dize = 0;
+	list->p = 0;
+	list->space = 0;
 	return (list);
 }
 
@@ -33,6 +36,12 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 	if (!(ptr = (t_list_p *)malloc(sizeof(t_list_p))))
 		ft_error();
 	ptr = ft_init_list(ptr);
+	while (*(++*str) == ' ' || **str == '#' || **str == '+')
+	{
+		ptr->dize += **str == '#' ? 1 : 0;
+		ptr->p += **str == '+' ? 1 : 0;
+		ptr->space += **str == ' ' ? 1 : 0;
+	}
 	if (ft_isdigit(**str) || (**str == '-' && ft_isdigit(*(*str + 1))))
 	{
 		while (**str == '0')

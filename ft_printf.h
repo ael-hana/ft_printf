@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/06 06:49:51 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/07 03:55:29 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 typedef struct			t_list_params
 {
 /*	char				*flags;
-	char				*champ;
-	char				*prec;*/
+	char				*champ;*/
+	char				space;
+	char				p;
 	char				modifi_atoi;
 	char				modifi_l;
 	char				modifi_L;
@@ -29,6 +30,7 @@ typedef struct			t_list_params
 	char				modifi_j;
 	char				modifi_z;
 	char				chr;
+	char				dize;
 }						t_list_p;
 
 typedef int				(tab_f)(t_list_p *, void *);
