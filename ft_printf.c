@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/07 05:35:54 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/07 08:00:16 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int				ft_printf(const char *format, ...)
 	{
 		while ((*format == '%'))
 		{
-//			while (*++format == ' ' || *format == '#' || *format == '+');
 			list = ft_fill_list((char **)&format, list);
 			if (-1 != (i = ft_chrstr_po(*format, params)))
 				len += oklm[i](list, &ap);
@@ -110,7 +109,7 @@ int			main(void)
 	ft_putstr("les params : \n");
 	ft_putstr(string);
 	ft_putstr("\n");
-	str = 1;
+	str = 0;
 	i = ft_printf(string, str);
 	ft_putnbr(i);
 	ft_putstr("\n");
