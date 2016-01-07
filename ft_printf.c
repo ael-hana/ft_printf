@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/07 04:13:59 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/07 05:06:27 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ int			main(void)
 
 	int	str;
 
-	str = 0;
-	i = ft_printf("{% 03d}", str);
+	str = 1;
+	i = ft_printf("{%0-3d}", str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("{% 03d}", str);
+	ok = printf("{%0-3d}", str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
