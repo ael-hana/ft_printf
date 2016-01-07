@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/07 05:06:27 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/07 05:35:54 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,15 @@ int				ft_printf(const char *format, ...)
 			if (-1 != (i = ft_chrstr_po(*format, params)))
 				len += oklm[i](list, &ap);
 			else if (list->modifi_atoi > 0)
+			{
+				/*ft_putstr("\n prec:");
+				ft_putnbr(list->prec);
+				ft_putstr("\n");
+				ft_putstr("\n atoi:");
+				ft_putnbr(list->modifi_atoi);
+				ft_putstr("\n");*/
 				len += ft_write_space(*format ? list->modifi_atoi - 1 : list->modifi_atoi, list);
+			}
 			if (*format && i != -1)
 				format++;
 		}
@@ -90,22 +98,25 @@ int				ft_printf(const char *format, ...)
 	va_end(ap);
 	return ((int)len);
 }
-/*
+
 int			main(void)
 {
 	int	i;
 	int	ok;
 
 	int	str;
+	char *string = "{%03.2d}";
 
-	str = 1;
-	i = ft_printf("{%0-3d}", str);
+	ft_putstr("les params : \n");
+	ft_putstr(string);
 	ft_putstr("\n");
+	str = 1;
+	i = ft_printf(string, str);
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("{%0-3d}", str);
+	ok = printf(string, str);
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
 	return (0);
-}*/
+}
