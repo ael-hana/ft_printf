@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/07 08:00:16 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/08 06:00:21 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int				ft_printf(const char *format, ...)
 	va_list			ap;
 	va_start(ap, format);
 	len = 0;
+
 	while (*format)
 	{
 		while ((*format == '%'))
@@ -103,13 +104,12 @@ int			main(void)
 	int	i;
 	int	ok;
 
-	int	str;
-	char *string = "{%03.2d}";
+	int	str = 0;
+	char *string = "{%.d}";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);
 	ft_putstr("\n");
-	str = 0;
 	i = ft_printf(string, str);
 	ft_putnbr(i);
 	ft_putstr("\n");
