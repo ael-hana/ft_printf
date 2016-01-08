@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/08 06:00:21 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/08 09:38:25 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int			main(void)
 	int	ok;
 
 	int	str = 0;
-	char *string = "{%.d}";
+	char *string = "{%03.2d}";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);

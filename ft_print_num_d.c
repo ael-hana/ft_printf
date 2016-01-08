@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/08 06:02:37 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/08 11:54:32 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int					ft_putnbr_ulong(unsigned long long int num, t_list_p *list)
 	unsigned int	i;
 
 	i = 0;
-	while (list->prec > 0)
+	if (!list->prec && list->prec_i)
+		return (0);
+	list->prec_i = 0;
+	while (list->prec > ft_putnbr_ulong_len(num))
 	{
 		if (list->modifi_atoi)
 			i += write(1, " ", 1);
@@ -25,6 +28,7 @@ int					ft_putnbr_ulong(unsigned long long int num, t_list_p *list)
 			i += write(1, "0", 1);
 		list->prec--;
 	}
+	list->prec = 0;
 	if (num / 10)
 		i += ft_putnbr_ulong(num / 10, list);
 	ft_putchar((num % 10) + '0');
@@ -49,7 +53,7 @@ int					ft_print_num_d(t_list_p *list, void *params)
 	else
 		num = va_arg(*((va_list *)params), int);
 	i = 0;
-	list->prec = list->prec > ft_putnbr_ulong_len(num > 0 ? num : num * -1) ? list->prec - ft_putnbr_ulong_len(num > 0 ? num : num * -1) : 0;
+	list->prec = list->prec > ft_putnbr_ulong_len(num > 0 ? num : num * -1) ? list->prec - ft_putnbr_ulong_len(num > 0 ? num : num * -1) : list->prec;
 	if ((!num) && (list->dize))
 		i = write(1, "0", 1);
 	if (num < 0)
@@ -64,8 +68,8 @@ int					ft_print_num_d(t_list_p *list, void *params)
 	i += list->p ? write(1, "+", 1) : 0;
 	if (list->modifi_atoi > 0)
 		i += ft_write_space(list->modifi_atoi - ft_putnbr_ulong_len(num), list);
-	return ((ft_putnbr_ulong(num, list) + i) + ft_write_space((list->modifi_atoi * -1)
-				- ft_putnbr_ulong_len(num), list));
+	return ((ft_putnbr_ulong(num, list) + i) +
+			ft_write_space((list->modifi_atoi * -1) - ft_putnbr_ulong_len(num), list));
 }
 
 int					ft_print_num_d_height_u_int(t_list_p *list, void *params)

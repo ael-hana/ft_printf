@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/07 05:16:03 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/08 06:16:10 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct			t_list_params
 {
-//	char				*flags;
+	char				prec_i;
 	char				prec;
 	char				space;
 	char				p;

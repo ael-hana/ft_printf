@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/08 02:58:56 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/08 06:36:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_list_p		*ft_init_list(t_list_p *list)
 	list->p = 0;
 	list->space = 0;
 	list->prec = 0;
+	list->prec_i = 0;
 	return (list);
 }
 
@@ -32,6 +33,7 @@ void			ft_prec(char **str, t_list_p *list)
 {
 	if (**str == '.')
 	{
+		list->prec_i = 1;
 		list->prec = ft_atoi(++*str);
 		while (ft_isdigit(**str))
 			(*str)++;
