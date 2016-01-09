@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/08 11:54:32 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/09 20:21:53 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,31 @@ int					ft_print_num_d(t_list_p *list, void *params)
 	else
 		num = va_arg(*((va_list *)params), int);
 	i = 0;
-	list->prec = list->prec > ft_putnbr_ulong_len(num > 0 ? num : num * -1) ? list->prec - ft_putnbr_ulong_len(num > 0 ? num : num * -1) : list->prec;
 	if ((!num) && (list->dize))
 		i = write(1, "0", 1);
 	if (num < 0)
 	{
 		list->chr ? ft_putchar('-') : 0;
 		if (list->modifi_atoi > 0)
-			i = ft_write_space(list->modifi_atoi - (ft_putnbr_ulong_len(num * -1) + 1), list);
+			i += ft_write_space(list->modifi_atoi - (ft_putnbr_ulong_len(num * -1) + 1), list);
 		list->chr ? 0 : ft_putchar('-');
 		return (i + ft_putnbr_ulong(num * -1, list) + 1);
 	}
 	i += list->space && !list->p ? write(1, " ", 1) : 0;
 	i += list->p ? write(1, "+", 1) : 0;
-	if (list->modifi_atoi > 0)
-		i += ft_write_space(list->modifi_atoi - ft_putnbr_ulong_len(num), list);
-	return ((ft_putnbr_ulong(num, list) + i) +
-			ft_write_space((list->modifi_atoi * -1) - ft_putnbr_ulong_len(num), list));
+	if (list->modifi_atoi > 0 && !list->prec)
+	{
+		list->modifi_atoi = list->modifi_atoi - (ft_putnbr_ulong_len(num) - list->prec);
+	}
+	else if (list->modifi_atoi > 0 && (list->prec < ft_putnbr_ulong_len(num)))
+		list->modifi_atoi -= ft_putnbr_ulong_len(num);
+	else if (list->modifi_atoi > 0 && (list->chr || (list->modifi_atoi > (list->prec + ft_putnbr_ulong_len(num)))))
+		list->modifi_atoi -= list->prec;
+	else if (list->modifi_atoi > 0)
+		list->modifi_atoi -= ft_putnbr_ulong_len(num);
+	i += (list->modifi_atoi > 0) ? ft_write_space((list->modifi_atoi), list) : i;
+	return  ((ft_putnbr_ulong(num, list) + i) +
+			ft_write_space(((list->modifi_atoi + ft_putnbr_ulong_len(num)) * -1), list));
 }
 
 int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
