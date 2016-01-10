@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 07:13:54 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 17:15:05 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,7 @@ int				ft_printf(const char *format, ...)
 			if (-1 != (i = ft_chrstr_po(*format, params)))
 				len += oklm[i](list, &ap);
 			else if (list->modifi_atoi > 0)
-			{
-				/*ft_putstr("\n prec:");
-				ft_putnbr(list->prec);
-				ft_putstr("\n");
-				ft_putstr("\n atoi:");
-				ft_putnbr(list->modifi_atoi);
-				ft_putstr("\n");*/
 				len += ft_write_space(*format ? list->modifi_atoi - 1 : list->modifi_atoi, list);
-			}
 			if (*format && i != -1)
 				format++;
 		}
@@ -98,14 +90,14 @@ int				ft_printf(const char *format, ...)
 	va_end(ap);
 	return ((int)len);
 }
-
+/*
 int			main(void)
 {
 	int	i;
 	int	ok;
 	setlocale(LC_ALL, "en_US.UTF-8");
 	void	*str = "422";
-	char *string = "{%04s}";
+	char *string = "{%.4s}";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);
@@ -118,4 +110,4 @@ int			main(void)
 	ft_putnbr(ok);
 	ft_putstr("\n");
 	return (0);
-}
+}*/

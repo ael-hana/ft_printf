@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:40:28 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 07:13:53 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 17:15:30 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int					ft_putstr_len(char *str, int len)
 int					ft_putstr_ret_len(t_list_p *list, void *params)
 {
 	int				i;
+	int				tmp;
 	void			*ptr;
 
 	if (list && list->modifi_l == 1)
@@ -34,20 +35,18 @@ int					ft_putstr_ret_len(t_list_p *list, void *params)
 		ft_putstr("(null)");
 		return (6);
 	}
-	if ()
+	if (list->prec_i && ft_strlen(ptr) > (size_t)list->prec)
 	{
-		i = ft_write_space(list->modifi_atoi - (list->prec - ft_strlen(ptr)), list);
-	}
-	else if (list->modifi_atoi > list->prec)
-	{
-		ft_putstr("(null)");
-		i = ft_write_space(list->modifi_atoi - list->prec, list);
+		i = ft_write_space(list->modifi_atoi - (list->prec), list);
 	}
 	else
 	{
-		i = ft_write_space(list->modifi_atoi - ft_strlen(ptr), list);
+		tmp = list->prec;
+		list->prec = 0;
+		i = ft_write_space(list->modifi_atoi - (ft_strlen(ptr)), list);
+		list->prec = tmp;
 	}
-	if (!list->prec && list->prec_i)
+	if (list->prec_i && (!list->prec))
 		return (i);
 	return (i + ft_putstr_len(ptr, list->prec));
 }
