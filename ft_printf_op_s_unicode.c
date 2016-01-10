@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 01:23:45 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 18:40:32 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 21:01:13 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int					ft_printf_op_s_unicode(t_list_p *list, void *params)
 	tmp = 0;
 	if (list->modifi_atoi > 0 && list->prec_i)
 	{
-		while ((list->prec - i) > 0)
+		while ((list->prec - (i + size_bin(*(str + tmp)))) >= 0)
 		{
 			i += size_bin(*(str + tmp));
 			list->modifi_atoi -= size_bin(*(str + tmp++));
@@ -39,7 +39,7 @@ int					ft_printf_op_s_unicode(t_list_p *list, void *params)
 	else if (list->modifi_atoi > 0)
 		i = ft_write_space(list->modifi_atoi - ft_strlen_unicode(str), list);
 	tmp = 0;
-	while (*str && ((list->prec > tmp) || (!list->prec)))
+	while (*str && ((list->prec > tmp) || (!list->prec_i && !list->prec)))
 	{
 		tmp += size_bin(*str);
 		if (tmp <= list->prec || !list->prec)
