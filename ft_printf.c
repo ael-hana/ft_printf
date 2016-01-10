@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 21:01:30 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 00:56:30 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,19 +90,20 @@ int				ft_printf(const char *format, ...)
 	va_end(ap);
 	return ((int)len);
 }
-/*
+
 int			main(void)
 {
 	int	i;
 	int	ok;
 	setlocale(LC_ALL, "en_US.UTF-8");
-	void	*str = L"Jambon";
-	char *string = "%4.2S";
+	void	*str = NULL;
+	char *string = "%.p";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);
 	ft_putstr("\n");
 	i = ft_printf(string, str);
+	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
 	ok = printf(string, str);
@@ -110,4 +111,4 @@ int			main(void)
 	ft_putnbr(ok);
 	ft_putstr("\n");
 	return (0);
-}*/
+}

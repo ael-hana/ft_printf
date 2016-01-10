@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 04:34:21 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 21:33:24 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int							ft_print_op_o(t_list_p *list, void *params)
 	int						tmp;
 
 	if (list && list->modifi_l == 1)
-		num = (unsigned long)va_arg(*((va_list *)params), unsigned long int);
+		num = va_arg(*((va_list *)params), unsigned long int);
 	else if (list && list->modifi_l == 2)
-		num = (unsigned long)va_arg(*((va_list *)params), unsigned long long int);
+		num = va_arg(*((va_list *)params), unsigned long long int);
 	else if (list && list->modifi_h == 2)
 		num = (unsigned char)va_arg(*((va_list *)params), int);
 	else if (list && list->modifi_j == 1)
@@ -58,7 +58,6 @@ int							ft_print_op_o(t_list_p *list, void *params)
 		return (0);
 	return (i + ft_write_space(tmp - ft_len_base(num, 8), list) + ft_printf_base(num, 8, 0, 0));
 }
-
 
 int							ft_print_op_o_great(t_list_p *list, void *params)
 {
