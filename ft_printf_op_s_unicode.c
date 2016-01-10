@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 01:23:45 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 07:13:59 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 18:40:32 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,23 @@ int					ft_printf_op_s_unicode(t_list_p *list, void *params)
 		return (6);
 	}
 	i = 0;
-	if (list->modifi_atoi > 0)
+	tmp = 0;
+	if (list->modifi_atoi > 0 && list->prec_i)
+	{
+		while ((list->prec - i) > 0)
+		{
+			i += size_bin(*(str + tmp));
+			list->modifi_atoi -= size_bin(*(str + tmp++));
+		}
+		i = ft_write_space(list->modifi_atoi, list);
+	}
+	else if (list->modifi_atoi > 0)
 		i = ft_write_space(list->modifi_atoi - ft_strlen_unicode(str), list);
 	tmp = 0;
 	while (*str && ((list->prec > tmp) || (!list->prec)))
 	{
 		tmp += size_bin(*str);
-		if (tmp < list->prec || !list->prec)
+		if (tmp <= list->prec || !list->prec)
 			i += ft_put_op_c_unicode(*(str++));
 	}
 	i += ft_write_space((list->modifi_atoi * -1) - i, list);
