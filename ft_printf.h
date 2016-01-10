@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/08 06:16:10 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 02:50:42 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,12 @@ int						three_oct(unsigned int a);
 int						two_oct(unsigned int a);
 /*end ft_bit_wise*/
 void					ft_error();
-
 /*ft_len_func*/
 int						ft_putnbr_ulong_len(unsigned long long int num);
 int						ft_write_space(long long int num, t_list_p *list);
 int						ft_len_base(unsigned long long int num, int base);
 /*end ft_len_func*/
+
+void				ft_zebi(long long int num, t_list_p *list);
+void				ft_zebi_nega(long long int num, t_list_p *list);
 #endif
