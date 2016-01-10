@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 01:24:18 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 02:36:48 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,14 @@ int				ft_printf(const char *format, ...)
 	va_end(ap);
 	return ((int)len);
 }
-
+/*
 int			main(void)
 {
 	int	i;
 	int	ok;
 
 	int	str = 42;
-	char *string = "{%15.4d}";
+	char *string = "{%15.4u}";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);
@@ -118,4 +118,4 @@ int			main(void)
 	ft_putnbr(ok);
 	ft_putstr("\n");
 	return (0);
-}
+}*/

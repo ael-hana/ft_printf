@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 01:34:17 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/10 01:54:38 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,10 @@ int					ft_print_num_d(t_list_p *list, void *params)
 
 int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
 {
+	int				i;
 	long			num;
 
+	i = 0;
 	if (list && list->modifi_l == 1)
 		num = va_arg(*((va_list *)params), unsigned long int);
 	else if (list && list->modifi_l == 2)
@@ -118,7 +120,10 @@ int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
 		num = va_arg(*((va_list *)params), size_t);
 	else
 		num = va_arg(*((va_list *)params), unsigned int);
-	return (ft_putnbr_ulong(num, list));
+	i += list->p ? write(1, "+", 1) : 0;
+	ft_zebi(num, list);
+	i += (list->modifi_atoi > 0) ? ft_write_space((list->modifi_atoi), list) : 0;
+	return (ft_putnbr_ulong(num, list) + i);
 }
 
 int					ft_print_num_d_height_u_long(t_list_p *list, void *params)
