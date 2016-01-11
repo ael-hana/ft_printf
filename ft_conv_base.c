@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 01:11:58 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 02:28:21 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,21 @@ int							ft_print_op_x(t_list_p *list, void *params)
 		num = va_arg(*((va_list *)params), size_t);
 	else
 		num = va_arg(*((va_list *)params), unsigned int);
-	if (list->dize && num)
-		return (write(1, "0x", 2) + i + ft_printf_base(num, 16, 0, 1));
-	i = ft_write_space(list->modifi_atoi - ((list->prec > ft_len_base(num, 16)) ?
-				list->prec : ft_len_base(num, 16)), list);
-	list->chr = 1;
 	tmp = list->prec;
 	list->prec = 0;
+	if (list->dize && num)
+	{
+		list->chr = 1;
+		return (write(1, "0x", 2) + ft_write_space(tmp -
+					ft_len_base(num, 16), list) + ft_printf_base(num, 16, 0, 1));
+	}
+	i = ft_write_space(list->modifi_atoi - ((tmp > ft_len_base(num, 16)) ?
+				tmp : ft_len_base(num, 16)), list);
+	list->chr = 1;
 	if (!(num || list->modifi_atoi || tmp || list->p) && list->prec_i)
 		return (i);
-	return (ft_write_space(tmp - ft_len_base(num , 16), list) + i + ft_printf_base(num, 16, 0, 1));
+	return (ft_write_space(tmp - ft_len_base(num , 16), list) +
+			+ i + ft_printf_base(num, 16, 0, 1));
 }
 
 int		ft_print_op_x_great(t_list_p *list, void *params)
