@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 02:07:54 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 05:55:22 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct			t_list_params
 	char				prec_i;
 	char				prec;
 	char				space;
+	char				d;
 	char				p;
 	char				modifi_atoi;
 	char				modifi_l;

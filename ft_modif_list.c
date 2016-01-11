@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/08 06:36:59 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 06:21:49 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_list_p		*ft_init_list(t_list_p *list)
 	list->modifi_z = 0;
 	list->chr = 0;
 	list->dize = 0;
+	list->d = 0;
 	list->p = 0;
 	list->space = 0;
 	list->prec = 0;
@@ -49,15 +50,18 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 	if (!(ptr = (t_list_p *)malloc(sizeof(t_list_p))))
 		ft_error();
 	ptr = ft_init_list(ptr);
-	while (*(++*str) == ' ' || **str == '#' || **str == '+')
+	while (*(++*str) == ' ' || **str == '-' || **str == '#' || **str == '+')
 	{
 		ptr->dize += **str == '#' ? 1 : 0;
+		ptr->d += **str == '-' ? 1 : 0;
 		ptr->p += **str == '+' ? 1 : 0;
 		ptr->space += **str == ' ' ? 1 : 0;
 	}
 	ft_prec(str, ptr);
-	if (ft_isdigit(**str) || (**str == '-' && ft_isdigit(*(*str + 1))))
+	if (ft_isdigit(**str) || (*(*str - ptr->d) == '-' && ft_isdigit(*(*str - ptr->d) + 1)))
 	{
+		if (*(*str - ptr->d) == '-' && ft_isdigit(*((*str - ptr->d) + 1)))
+			*str = (*str - ptr->d);
 		while (**str == '0')
 		{
 			ptr->chr++;
