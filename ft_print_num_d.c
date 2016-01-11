@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 07:13:58 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 02:48:32 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
 		num = va_arg(*((va_list *)params), size_t);
 	else
 		num = va_arg(*((va_list *)params), unsigned int);
-	i += list->p ? write(1, "+", 1) : 0;
 	ft_zebi(num, list);
 	i += (list->modifi_atoi > 0) ? ft_write_space((list->modifi_atoi), list) : 0;
 	return (ft_putnbr_ulong(num, list) + i);

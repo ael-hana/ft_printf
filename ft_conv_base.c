@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 02:28:21 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 03:00:40 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int							ft_print_op_o(t_list_p *list, void *params)
 		num = va_arg(*((va_list *)params), unsigned long int);
 	else if (list && list->modifi_l == 2)
 		num = va_arg(*((va_list *)params), unsigned long long int);
+	else if (list && list->modifi_h == 1)
+		num = (unsigned short)va_arg(*((va_list *)params), int);
 	else if (list && list->modifi_h == 2)
 		num = (unsigned char)va_arg(*((va_list *)params), int);
 	else if (list && list->modifi_j == 1)
@@ -46,16 +48,22 @@ int							ft_print_op_o(t_list_p *list, void *params)
 	else
 		num = (unsigned long)va_arg(*((va_list *)params), unsigned int);
 	if (list->dize && num)
-		return (write(1, "0", 1) + ft_printf_base(num, 8, 0, 0));
+	{
+		tmp = list->prec;
+		list->chr = 1;
+		list->prec = 0;
+		return (ft_write_space((tmp - ft_len_base(num, 8)) - 1, list) +
+				 + write(1, "0", 1) + ft_printf_base(num, 8, 0, 0));
+	}
 	i = ft_write_space(list->modifi_atoi - ((list->prec > ft_len_base(num, 8)) ?
 				list->prec : ft_len_base(num, 8)), list);
-	list->chr = 1;
 	tmp = list->prec;
+	list->chr = 1;
 	list->prec = 0;
 	if (!(num || list->modifi_atoi || list->modifi_h ||
 				list->modifi_L || list->modifi_j || list->modifi_z
 				|| tmp || list->dize || list->p) && list->prec_i)
-		return (0);
+		return (i);
 	return (i + ft_write_space(tmp - ft_len_base(num, 8), list) + ft_printf_base(num, 8, 0, 0));
 }
 
