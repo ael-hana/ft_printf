@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 21:11:01 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 21:34:30 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,10 @@ int					ft_print_num_d(t_list_p *list, void *params)
 		return (i + ft_write_space((tmp2 + i) * -1, list));
 	}
 	i += list->space && !list->p ? write(1, " ", 1) : 0;
-	i += list->p ? write(1, "+", 1) : 0;
 	ft_zebi(num, list);
+	i += list->p && list->chr ? write(1, "+", 1) : 0;
 	i += (list->modifi_atoi > 0) ? ft_write_space(list->modifi_atoi, list) : 0;
+	i += list->p && !list->chr ? write(1, "+", 1) : 0;
 	return  ((ft_putnbr_ulong(num, list) + i) +
 			ft_write_space(((tmp2 + ft_putnbr_ulong_len(num)) * -1), list));
 }

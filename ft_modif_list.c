@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 21:08:59 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 21:30:56 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ void			ft_prec(char **str, t_list_p *list)
 	}
 }
 
+t_list_p		*ft_check_op(char **str, t_list_p *ptr)
+{
+	while (**str == ' ' || **str == '-' || **str == '#' || **str == '+')
+	{
+		ptr->dize += **str == '#' ? 1 : 0;
+		ptr->d += **str == '-' ? 1 : 0;
+		ptr->p += **str == '+' ? 1 : 0;
+		ptr->space += **str == ' ' ? 1 : 0;
+		(*str)++;
+	}
+	return (ptr);
+}
+
 t_list_p		*ft_fill_list(char **str, t_list_p *list)
 {
 	t_list_p	*ptr;
@@ -50,13 +63,8 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 	if (!(ptr = (t_list_p *)malloc(sizeof(t_list_p))))
 		ft_error();
 	ptr = ft_init_list(ptr);
-	while (*(++*str) == ' ' || **str == '-' || **str == '#' || **str == '+')
-	{
-		ptr->dize += **str == '#' ? 1 : 0;
-		ptr->d += **str == '-' ? 1 : 0;
-		ptr->p += **str == '+' ? 1 : 0;
-		ptr->space += **str == ' ' ? 1 : 0;
-	}
+	(*str)++;
+	ptr = ft_check_op(str, ptr);
 	ft_prec(str, ptr);
 	if (ft_isdigit(**str) || (*(*str - ptr->d) == '-' && ft_isdigit(*(*str - ptr->d) + 1)))
 	{
@@ -73,6 +81,7 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 			(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
 			ft_putnbr_ulong_len(ptr->modifi_atoi);
 		ptr->chr = ptr->modifi_atoi < 0 ? 0 : ptr->chr;
+		ptr = ft_check_op(str, ptr);
 	}
 	ft_prec(str, ptr);
 	while (**str == 'l')
