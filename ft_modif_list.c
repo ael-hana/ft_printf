@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 21:30:56 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 21:58:20 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,25 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 			ptr->chr++;
 			(*str)++;
 		}
+		if (!ptr->p && (ptr->p = **str == '+' ? 1 : 0))
+		*str += ptr->p;
 		ptr->modifi_atoi = ft_atoi(*str);
 		if (!ft_strchr("sSpdDioOuUxXcC%", **str))
-		*str += ptr->modifi_atoi < 0 ?
+			*str += ptr->modifi_atoi < 0 ?
 			(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
 			ft_putnbr_ulong_len(ptr->modifi_atoi);
 		ptr->chr = ptr->modifi_atoi < 0 ? 0 : ptr->chr;
-		ptr = ft_check_op(str, ptr);
 	}
+	if (!ptr->modifi_atoi && ft_isdigit(**str))
+	{
+			ptr->modifi_atoi = ft_atoi(*str);
+		if (!ft_strchr("sSpdDioOuUxXcC%", **str))
+			*str += ptr->modifi_atoi < 0 ?
+				(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
+				ft_putnbr_ulong_len(ptr->modifi_atoi);
+	}
+	if (!ft_strchr("sSpdDioOuUxXcC%", **str))
+	ptr = ft_check_op(str, ptr);
 	ft_prec(str, ptr);
 	while (**str == 'l')
 	{
