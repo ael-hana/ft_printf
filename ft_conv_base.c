@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 05:47:07 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 07:04:47 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ int							ft_print_op_o(t_list_p *list, void *params)
 	if (list->dize && num)
 	{
 		tmp = list->prec;
-		list->chr = 1;
+		list->chr = 0;
 		list->prec = 0;
-		return (ft_write_space((tmp - ft_len_base(num, 8)) - 1, list) +
-				 + write(1, "0", 1) + ft_printf_base(num, 8, 0, 0));
+		i = ft_write_space((list->modifi_atoi - ft_len_base(num, 8)) - 1, list);
+		list->chr = 1;
+		i += ft_write_space((tmp - ft_len_base(num, 8)) - 1, list);
+		return (i + write(1, "0", 1) + ft_printf_base(num, 8, 0, 0));
 	}
 	i = ft_write_space(list->modifi_atoi - ((list->prec > ft_len_base(num, 8)) ?
 				list->prec : ft_len_base(num, 8)), list);
@@ -64,7 +66,8 @@ int							ft_print_op_o(t_list_p *list, void *params)
 				list->modifi_L || list->modifi_j || list->modifi_z
 				|| tmp || list->dize || list->p) && list->prec_i)
 		return (i);
-	return (i + ft_write_space(tmp - ft_len_base(num, 8), list) + ft_printf_base(num, 8, 0, 0));
+	i += ft_write_space(tmp - ft_len_base(num, 8), list) + ft_printf_base(num, 8, 0, 0);
+	return (i + ft_write_space(((list->chr = 0) + (list->modifi_atoi * -1)) - i, list));
 }
 
 int							ft_print_op_o_great(t_list_p *list, void *params)

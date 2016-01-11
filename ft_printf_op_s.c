@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:40:28 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 01:34:22 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 06:32:17 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int					ft_print_chr(t_list_p *list, void *params)
 		return (ft_put_op_c_unicode(va_arg(*((va_list *)params), unsigned int)));
 	n = ft_write_space(list->modifi_atoi - 1, list);
 	ft_putchar((char)va_arg(*((va_list *)params), int));
+	n += ft_write_space((list->modifi_atoi * -1) - 1, list);
 	return (1 + n);
 }
