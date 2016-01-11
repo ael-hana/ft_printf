@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 05:25:27 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 05:47:07 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,16 @@ int							ft_print_op_x(t_list_p *list, void *params)
 		return (i + write(1, "0x", 2) + ft_write_space(tmp -
 					ft_len_base(num, 16), list) + ft_printf_base(num, 16, 0, 1));
 	}
-	ft_putstr("osef");
-	i = ft_write_space(list->modifi_atoi - ((tmp > ft_len_base(num, 16)) ?
-				tmp : ft_len_base(num, 16)), list);
+	if (!num && tmp < ft_len_base(num, 16))
+		i += ft_write_space(list->modifi_atoi, list);
+	else if (tmp < ft_len_base(num, 16))
+		i += ft_write_space(list->modifi_atoi - (ft_len_base(num, 16)), list);
+	else if (tmp > ft_len_base(num, 16))
+		i += ft_write_space(list->modifi_atoi - (tmp), list);
+	else if (list->prec_i)
+		i = ft_write_space(list->modifi_atoi - tmp, list);
+	else
+		i = ft_write_space(list->modifi_atoi - ft_len_base(num, 16), list);
 	list->chr = 1;
 	if (!(num || list->modifi_atoi || tmp || list->p) && list->prec_i)
 		return (i);

@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 05:23:47 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 05:49:54 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,17 @@ int			main(void)
 	int	i;
 	int	ok;
 	setlocale(LC_ALL, "en_US.UTF-8");
-	int	str = 42;
-	char *string = "@moulitest: %5.x";
+	void	*str = "this";
+	char *string = "%-.2s is a string";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);
 	ft_putstr("\n");
-	i = ft_printf("%5.0x", 0);
+	i = ft_printf(string, str);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf("%5.0x", 0) ;
+	ok = printf(string, str) ;
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
