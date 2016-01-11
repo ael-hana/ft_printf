@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 22:32:49 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 22:57:20 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int					ft_print_num_d(t_list_p *list, void *params)
 		num = va_arg(*((va_list *)params), long int);
 	else if (list && list->modifi_l == 2)
 		num = va_arg(*((va_list *)params), long long int);
+	else if (list && list->modifi_h == 1)
+		num = (short)va_arg(*((va_list *)params), int);
 	else if (list && list->modifi_h == 2)
 		num = (char)va_arg(*((va_list *)params), int);
 	else if (list && list->modifi_j == 1)
@@ -125,7 +127,8 @@ int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
 		num = va_arg(*((va_list *)params), unsigned int);
 	ft_zebi(num, list);
 	i += (list->modifi_atoi > 0) ? ft_write_space((list->modifi_atoi), list) : 0;
-	return (ft_putnbr_ulong(num, list) + i);
+	i += ft_putnbr_ulong(num, list);
+	return (i + ft_write_space((list->modifi_atoi * -1) - i, list));
 }
 
 int					ft_print_num_d_height_u_long(t_list_p *list, void *params)
