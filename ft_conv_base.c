@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 07:30:33 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 19:40:40 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int							ft_print_op_o(t_list_p *list, void *params)
 	unsigned long long int	num;
 	int						i;
 	int						tmp;
+	int						tmp2;
 
 	if (list && list->modifi_l == 1)
 		num = va_arg(*((va_list *)params), unsigned long int);
@@ -66,12 +67,13 @@ int							ft_print_op_o(t_list_p *list, void *params)
 	tmp = list->prec;
 	list->chr = 1;
 	list->prec = 0;
+	tmp2 = list->modifi_atoi;
 	if (!(num || list->modifi_atoi || list->modifi_h ||
 				list->modifi_L || list->modifi_j || list->modifi_z
 				|| tmp || list->dize || list->p) && list->prec_i)
 		return (i);
 	i += ft_write_space(tmp - ft_len_base(num, 8), list) + ft_printf_base(num, 8, 0, 0);
-	return (i + ft_write_space(((list->chr = 0) + (list->modifi_atoi * -1)) - i, list));
+	return (i + ft_write_space(((list->chr = 0) + (tmp2 * -1)) - i, list));
 }
 
 int							ft_print_op_o_great(t_list_p *list, void *params)

@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 02:48:32 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 19:55:48 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int					ft_print_num_d(t_list_p *list, void *params)
 {
 	long long int	num;
 	int				i;
+	int				tmp2;
 
 	if (list && list->modifi_l == 1)
 		num = va_arg(*((va_list *)params), long int);
@@ -84,6 +85,7 @@ int					ft_print_num_d(t_list_p *list, void *params)
 	i = 0;
 	if ((!num) && (list->dize))
 		i = write(1, "0", 1);
+	tmp2 = list->modifi_atoi;
 	if (num < 0)
 	{
 		num *= -1;
@@ -91,15 +93,15 @@ int					ft_print_num_d(t_list_p *list, void *params)
 		i += list->chr ? write(1, "-", 1) : 0;
 		if (list->modifi_atoi > 0)
 			i += ft_write_space(list->modifi_atoi - (ft_putnbr_ulong_len(num)), list);
-		i += list->chr ? 0 : write(1, "-", 1);
-		return (i + ft_putnbr_ulong(num, list));
+		i += list->chr ? ft_putnbr_ulong(num, list) : write(1, "-", 1) + ft_putnbr_ulong(num, list);
+		return (i + ft_write_space((tmp2 + i) * -1, list));
 	}
 	i += list->space && !list->p ? write(1, " ", 1) : 0;
 	i += list->p ? write(1, "+", 1) : 0;
 	ft_zebi(num, list);
 	i += (list->modifi_atoi > 0) ? ft_write_space((list->modifi_atoi), list) : 0;
 	return  ((ft_putnbr_ulong(num, list) + i) +
-			ft_write_space(((list->modifi_atoi + ft_putnbr_ulong_len(num)) * -1), list));
+			ft_write_space(((tmp2 + ft_putnbr_ulong_len(num)) * -1), list));
 }
 
 int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
