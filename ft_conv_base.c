@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 21:33:24 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 01:11:58 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,7 @@ int							ft_print_op_x(t_list_p *list, void *params)
 	list->chr = 1;
 	tmp = list->prec;
 	list->prec = 0;
-	if (!(num || list->modifi_atoi || list->modifi_h ||
-				list->modifi_L || list->modifi_j || list->modifi_z
-				|| tmp || list->dize || list->p) && list->prec_i)
+	if (!(num || list->modifi_atoi || tmp || list->p) && list->prec_i)
 		return (i);
 	return (ft_write_space(tmp - ft_len_base(num , 16), list) + i + ft_printf_base(num, 16, 0, 1));
 }
@@ -124,9 +122,7 @@ int		ft_print_op_x_great(t_list_p *list, void *params)
 	list->chr = 1;
 	tmp = list->prec;
 	list->prec = 0;
-	if (!(num || list->modifi_atoi || list->modifi_h ||
-				list->modifi_L || list->modifi_j || list->modifi_z
-				|| tmp || list->dize || list->p) && list->prec_i)
+	if (!(num || list->modifi_atoi || tmp || list->p) && list->prec_i)
 		return (i);
 	return (ft_write_space(tmp - ft_len_base(num , 16), list) + i + ft_printf_base(num, 16, 0, 0));
 }
