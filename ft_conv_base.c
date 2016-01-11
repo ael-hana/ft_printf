@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 07:04:47 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 07:30:33 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,14 @@ int							ft_print_op_o(t_list_p *list, void *params)
 		tmp = list->prec;
 		list->chr = 0;
 		list->prec = 0;
+		if (list->d && list->dize)
+			list->modifi_atoi *= -1;
 		i = ft_write_space((list->modifi_atoi - ft_len_base(num, 8)) - 1, list);
 		list->chr = 1;
 		i += ft_write_space((tmp - ft_len_base(num, 8)) - 1, list);
-		return (i + write(1, "0", 1) + ft_printf_base(num, 8, 0, 0));
+		i += write(1, "0", 1) + ft_printf_base(num, 8, 0, 0);
+		list->chr = 0;
+		return (i + ft_write_space((list->modifi_atoi * -1) - i, list));
 	}
 	i = ft_write_space(list->modifi_atoi - ((list->prec > ft_len_base(num, 8)) ?
 				list->prec : ft_len_base(num, 8)), list);
