@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 03:47:05 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/10 02:36:51 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 04:56:33 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int					ft_write_space(long long int num, t_list_p *list)
 	i = 0;
 	if (!list)
 		return (0);
-	list->modifi_atoi = 0;
 	num -= list->space ? 1 : 0;
 	num -= list->p ? 1 : 0;
 	while (num > i)
 	{
+		list->modifi_atoi = 0;
 		if (list->chr && (!list->prec))
 			write(1, "0",1);
 		else

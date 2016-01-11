@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 03:53:52 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 05:25:27 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int							ft_print_op_x(t_list_p *list, void *params)
 {
 	int						i;
 	unsigned long long int	num;
-	int						tmp2;
 	int						tmp;
 
 	i = 0;
@@ -97,18 +96,20 @@ int							ft_print_op_x(t_list_p *list, void *params)
 	list->prec = 0;
 	if (list->dize && num)
 	{
+		i += ft_write_space(list->modifi_atoi - (tmp + ft_len_base(num, 16) + 2), list);
 		list->chr = 1;
-		return (write(1, "0x", 2) + ft_write_space(tmp -
+		return (i + write(1, "0x", 2) + ft_write_space(tmp -
 					ft_len_base(num, 16), list) + ft_printf_base(num, 16, 0, 1));
 	}
-	i = ft_write_space(tmp2 = list->modifi_atoi - ((tmp > ft_len_base(num, 16)) ?
+	ft_putstr("osef");
+	i = ft_write_space(list->modifi_atoi - ((tmp > ft_len_base(num, 16)) ?
 				tmp : ft_len_base(num, 16)), list);
 	list->chr = 1;
 	if (!(num || list->modifi_atoi || tmp || list->p) && list->prec_i)
 		return (i);
 	i += ft_write_space(tmp - ft_len_base(num , 16), list) + ft_printf_base(num, 16, 0, 1);
 	list->chr = 0;
-	return (i + ft_write_space(((tmp2 * -1) - i - ft_len_base(num , 16)), list));
+	return (i + ft_write_space((list->modifi_atoi * -1) - i, list));
 }
 
 int		ft_print_op_x_great(t_list_p *list, void *params)

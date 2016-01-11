@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 03:56:29 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 05:23:47 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int				ft_printf(const char *format, ...)
 		{
 			list = ft_fill_list((char **)&format, list);
 			if (-1 != (i = ft_chrstr_po(*format, params)))
-				len += oklm[i](list, &ap);
+				len += oklm[i](list, &ap) + (list->modifi_atoi = 0);
 			else if (list->modifi_atoi > 0)
 				len += ft_write_space(*format ? list->modifi_atoi - 1 : list->modifi_atoi, list);
 			if (*format && i != -1)
@@ -110,16 +110,16 @@ int			main(void)
 	int	ok;
 	setlocale(LC_ALL, "en_US.UTF-8");
 	int	str = 42;
-	char *string = "%#8x";
+	char *string = "@moulitest: %5.x";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);
 	ft_putstr("\n");
-	i = ft_printf(string, str, str, str);
+	i = ft_printf("%5.0x", 0);
 	ft_putstr("\n");
 	ft_putnbr(i);
 	ft_putstr("\n");
-	ok = printf(string, str, str, str);
+	ok = printf("%5.0x", 0) ;
 	ft_putstr("\nle nombre :\n");
 	ft_putnbr(ok);
 	ft_putstr("\n");
