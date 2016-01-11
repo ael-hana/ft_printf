@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 06:21:49 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/11 21:08:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 			(*str)++;
 		}
 		ptr->modifi_atoi = ft_atoi(*str);
+		if (!ft_strchr("sSpdDioOuUxXcC%", **str))
 		*str += ptr->modifi_atoi < 0 ?
 			(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
 			ft_putnbr_ulong_len(ptr->modifi_atoi);
