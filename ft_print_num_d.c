@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 17:08:30 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:28:01 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int					ft_putnbr_ulong(unsigned long long int num, t_list_p *list)
 	list->prec_i = 0;
 	while (list->prec > ft_putnbr_ulong_len(num))
 	{
-		if (list->modifi_atoi)
+		if (list->modifi_atoi && list->prec < ft_putnbr_ulong_len(num))
 			i += write(1, " ", 1);
 		else
 			i += write(1, "0", 1);
