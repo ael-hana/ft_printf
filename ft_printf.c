@@ -6,29 +6,13 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 17:57:17 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 20:47:01 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-tab_f			*oklm[] = {
-					&ft_putstr_ret_len,//%s
-					&ft_printf_op_s_unicode,//%S
-					&ft_printf_p,//%p
-					&ft_print_num_d,//%d
-					&ft_print_num_d_height_long,//%D
-					&ft_print_num_d,//%i
-					&ft_print_op_o,//%o
-					&ft_print_op_o_great,//%O
-					&ft_print_num_d_height_u_int,//u
-					&ft_print_num_d_height_u_long,//U
-					&ft_print_op_x,//x
-					&ft_print_op_x_great,//X
-					&ft_print_chr,//c
-					&ft_printf_op_c_unicode,//%C
-					&ft_printf_poucent
-							};
+
 
 int			ft_printf_poucent(t_list_p *list, void *params)
 {

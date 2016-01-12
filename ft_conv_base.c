@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 19:07:09 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 19:46:37 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,7 @@ int							ft_print_op_o(t_list_p *list, void *params)
 
 	num = ft_osef_ma_gueule(list, params);
 	if (list->dize && num)
-	{
-		tmp = list->prec;
-		list->chr = 0;
-		list->prec = 0;
-		if (list->d && list->dize)
-			list->modifi_atoi *= -1;
-		i = ft_write_space((list->modifi_atoi - ft_len_base(num, 8)) - 1, list);
-		list->chr = 1;
-		i += ft_write_space((tmp - ft_len_base(num, 8)) - 1, list);
-		i += write(1, "0", 1) + ft_printf_base(num, 8, 0, 0);
-		list->chr = 0;
-		return (i + ft_write_space((list->modifi_atoi * -1) - i, list));
-	}
+		return (ft_print_op_o_nega(num, list));
 	i = ft_write_space(list->modifi_atoi - ((list->prec > ft_len_base(num, 8) ||
 	(!list->prec && list->prec_i)) ? list->prec : ft_len_base(num, 8)), list);
 	tmp = list->prec;
@@ -87,12 +75,6 @@ int							ft_print_op_o(t_list_p *list, void *params)
 	return (i + ft_write_space(((list->chr = 0) + (tmp2 * -1)) - i, list));
 }
 
-int							ft_print_op_o_great(t_list_p *list, void *params)
-{
-	list->modifi_l = 1;
-	return (ft_print_op_o(list, params));
-}
-
 int							ft_print_op_x(t_list_p *list, void *params)
 {
 	int						i;
@@ -105,25 +87,18 @@ int							ft_print_op_x(t_list_p *list, void *params)
 	list->prec = 0;
 	if (list->dize && num)
 	{
-		i += ft_write_space(list->modifi_atoi - (tmp + ft_len_base(num, 16) + 2), list);
+		i += ft_write_space(list->modifi_atoi - (tmp + ft_len_base(num, 16) + 2)
+				, list);
 		list->chr = 1;
 		return (i + write(1, "0x", 2) + ft_write_space(tmp -
 				ft_len_base(num, 16), list) + ft_printf_base(num, 16, 0, 1));
 	}
-	if (!num && tmp < ft_len_base(num, 16))
-		i += ft_write_space(list->modifi_atoi, list);
-	else if (tmp < ft_len_base(num, 16))
-		i += ft_write_space(list->modifi_atoi - (ft_len_base(num, 16)), list);
-	else if (tmp > ft_len_base(num, 16))
-		i += ft_write_space(list->modifi_atoi - (tmp), list);
-	else if (list->prec_i)
-		i = ft_write_space(list->modifi_atoi - tmp, list);
-	else
-		i = ft_write_space(list->modifi_atoi - ft_len_base(num, 16), list);
+	i = ft_check_for_ft_print_op_x(num, tmp, list);
 	list->chr = 1;
 	if (!(num || list->modifi_atoi || tmp || list->p) && list->prec_i)
 		return (i);
-	i += ft_write_space(tmp - ft_len_base(num, 16), list) + ft_printf_base(num, 16, 0, 1);
+	i += ft_write_space(tmp - ft_len_base(num, 16), list) + ft_printf_base(num,
+			16, 0, 1);
 	list->chr = 0;
 	return (i + ft_write_space((list->modifi_atoi * -1) - i, list));
 }

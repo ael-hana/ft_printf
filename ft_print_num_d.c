@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 17:57:19 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 20:43:48 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,72 +35,19 @@ int					ft_putnbr_ulong(unsigned long long int num, t_list_p *list)
 	return (i + 1);
 }
 
-void				ft_zebi(long long int num, t_list_p *list)
-{
-	if (list->modifi_atoi > 0 && !list->prec && num)
-		list->modifi_atoi = list->modifi_atoi - ft_putnbr_ulong_len(num);
-	else if (list->modifi_atoi > 0 && !num && list->prec_i && !list->prec)
-		list->modifi_atoi = list->modifi_atoi;
-	else if (list->modifi_atoi > 0 && (list->prec < ft_putnbr_ulong_len(num)))
-		list->modifi_atoi -= ft_putnbr_ulong_len(num);
-	else if (list->modifi_atoi > 0 && (list->prec > list->modifi_atoi))
-		list->modifi_atoi = 0;
-	else if (list->modifi_atoi > 0 && (list->chr || (list->modifi_atoi >
-					(list->prec + ft_putnbr_ulong_len(num)))))
-		list->modifi_atoi -= list->prec;
-	else if (list->modifi_atoi > 0)
-		list->modifi_atoi -= ft_putnbr_ulong_len(num);
-}
-
-void				ft_zebi_nega(long long int num, t_list_p *list)
-{
-	if (list->modifi_atoi > 0 && !list->prec)
-		list->modifi_atoi = list->modifi_atoi - (ft_putnbr_ulong_len(num) - 1);
-	else if (list->modifi_atoi > 0 && (list->prec < (ft_putnbr_ulong_len(num) + 1)))
-		list->modifi_atoi = list->modifi_atoi - 1; //+ ft_putnbr_ulong_len(num);
-	else if (list->modifi_atoi > 0 && (list->prec > list->modifi_atoi))
-	{
-		list->modifi_atoi = 0;//list->prec - (ft_putnbr_ulong_len(num) + 1);
-		list->chr = 1;
-	}
-	else if (list->modifi_atoi > 0)
-		list->modifi_atoi -= (ft_putnbr_ulong_len(num) + 1);
-}
-
 int					ft_print_num_d(t_list_p *list, void *params)
 {
 	long long int	num;
 	int				i;
 	int				tmp2;
 
-	if (list && list->modifi_l == 1)
-		num = va_arg(*((va_list *)params), long int);
-	else if (list && list->modifi_l == 2)
-		num = va_arg(*((va_list *)params), long long int);
-	else if (list && list->modifi_h == 1)
-		num = (short)va_arg(*((va_list *)params), int);
-	else if (list && list->modifi_h == 2)
-		num = (char)va_arg(*((va_list *)params), int);
-	else if (list && list->modifi_j == 1)
-		num = va_arg(*((va_list *)params),long int);
-	else if (list && list->modifi_z == 1)
-		num = va_arg(*((va_list *)params), size_t);
-	else
-		num = va_arg(*((va_list *)params), int);
+	num = ft_foret_de_if_2_ft_print_num_d(list, params);
 	i = 0;
 	if ((!num) && (list->dize))
 		i = write(1, "0", 1);
 	tmp2 = list->modifi_atoi;
 	if (num < 0)
-	{
-		num *= -1;
-		ft_zebi_nega(num, list);
-		i += list->chr ? write(1, "-", 1) : 0;
-		if (list->modifi_atoi > 0)
-			i += ft_write_space(list->modifi_atoi - (ft_putnbr_ulong_len(num) - list->p), list);
-		i += list->chr ? ft_putnbr_ulong(num, list) : write(1, "-", 1) + ft_putnbr_ulong(num, list);
-		return (i + ft_write_space((tmp2 + i) * -1, list));
-	}
+		return (ft_foret_de_if_2_ft_print_num_d_nega(num, list));
 	i += list->space && !list->p ? write(1, " ", 1) : 0;
 	ft_zebi(num, list);
 	i += list->p && list->chr ? write(1, "+", 1) : 0;
@@ -109,7 +56,7 @@ int					ft_print_num_d(t_list_p *list, void *params)
 	if (list->prec_i && list->prec > ft_putnbr_ulong_len(num))
 		list->modifi_atoi = 0;
 	i += ft_putnbr_ulong(num, list);
-	return  (ft_write_space(((tmp2 + i) * -1), list) + i);
+	return (ft_write_space(((tmp2 + i) * -1), list) + i);
 }
 
 int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
@@ -131,7 +78,8 @@ int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
 	else
 		num = va_arg(*((va_list *)params), unsigned int);
 	ft_zebi(num, list);
-	i += (list->modifi_atoi > 0) ? ft_write_space((list->modifi_atoi), list) : 0;
+	i += (list->modifi_atoi > 0) ? ft_write_space((list->modifi_atoi), list) :
+		0;
 	i += ft_putnbr_ulong(num, list);
 	return (i + ft_write_space((list->modifi_atoi * -1) - i, list));
 }

@@ -6,7 +6,7 @@
 #    By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/20 00:58:44 by ael-hana          #+#    #+#              #
-#    Updated: 2016/01/12 18:02:41 by ael-hana         ###   ########.fr        #
+#    Updated: 2016/01/12 20:40:52 by ael-hana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRC = ft_bit_wise.c \
 		ft_printf_p.c \
 		ft_printf_op_s_unicode.c \
 		ft_conv_base.c \
-		ft_modif_list.c ft_len_func.c
+		ft_modif_list.c ft_len_func.c \
+		ft_foret_de_if.c \
+		ft_foret_de_if_2.c
 
 SRCLIBFT =    ft_atoi.c \
     ft_bzero.c \
