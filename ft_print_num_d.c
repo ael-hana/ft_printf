@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 22:57:20 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 16:17:52 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ int					ft_print_num_d(t_list_p *list, void *params)
 	i += list->p && list->chr ? write(1, "+", 1) : 0;
 	i += (list->modifi_atoi > 0) ? ft_write_space(list->modifi_atoi, list) : 0;
 	i += list->p && !list->chr ? write(1, "+", 1) : 0;
-	return  ((ft_putnbr_ulong(num, list) + i) +
-			ft_write_space(((tmp2 + ft_putnbr_ulong_len(num)) * -1), list));
+	if (list->prec_i && list->prec > ft_putnbr_ulong_len(num))
+		list->modifi_atoi = 0;
+	i += ft_putnbr_ulong(num, list);
+	return  (ft_write_space(((tmp2 + i) * -1), list) + i);
 }
 
 int					ft_print_num_d_height_u_int(t_list_p *list, void *params)
