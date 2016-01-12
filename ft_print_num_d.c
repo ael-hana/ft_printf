@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:51:48 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 16:30:19 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:08:30 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ int					ft_putnbr_ulong(unsigned long long int num, t_list_p *list)
 	ft_putchar((num % 10) + '0');
 	return (i + 1);
 }
+
 void				ft_zebi(long long int num, t_list_p *list)
 {
-	if (list->modifi_atoi > 0 && !list->prec)
+	if (list->modifi_atoi > 0 && !list->prec && num)
 		list->modifi_atoi = list->modifi_atoi - ft_putnbr_ulong_len(num);
+	else if (list->modifi_atoi > 0 && !num && list->prec_i && !list->prec)
+		list->modifi_atoi = list->modifi_atoi;
 	else if (list->modifi_atoi > 0 && (list->prec < ft_putnbr_ulong_len(num)))
 		list->modifi_atoi -= ft_putnbr_ulong_len(num);
 	else if (list->modifi_atoi > 0 && (list->prec > list->modifi_atoi))
