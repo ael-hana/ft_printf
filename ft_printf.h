@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 20:47:51 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 21:11:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stdio.h>
-# include <locale.h>
 typedef struct				t_list_params
 {
 	char					prec_i;

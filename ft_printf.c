@@ -6,13 +6,11 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 20:47:01 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 21:12:05 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
 
 int			ft_printf_poucent(t_list_p *list, void *params)
 {
@@ -59,7 +57,6 @@ int				ft_printf(const char *format, ...)
 	int				i;
 	t_list_p		*list = NULL;
 	int				len;
-	char			params[] = "sSpdDioOuUxXcC%";
 	va_list			ap;
 	va_start(ap, format);
 	len = 0;
@@ -69,7 +66,7 @@ int				ft_printf(const char *format, ...)
 		while ((*format == '%'))
 		{
 			list = ft_fill_list((char **)&format, list);
-			if (-1 != (i = ft_chrstr_po(*format, params)))
+			if (-1 != (i = ft_chrstr_po(*format, "sSpdDioOuUxXcC%")))
 				len += oklm[i](list, &ap) + (list->modifi_atoi = 0);
 			else if (list->modifi_atoi > 0)
 				len += ft_write_space(*format ? list->modifi_atoi - 1 : list->modifi_atoi, list);
