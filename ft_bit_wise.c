@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bit_wise.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/12 18:05:32 by ael-hana          #+#    #+#             */
+/*   Updated: 2016/01/12 18:07:19 by ael-hana         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int						two_oct(unsigned int a)
 {
-	unsigned int tmp;
+	unsigned int		tmp;
 
 	tmp = ((a >> 6) + 192);
 	write(1, &tmp, 1);
@@ -13,7 +25,7 @@ int						two_oct(unsigned int a)
 
 int						three_oct(unsigned int a)
 {
-	unsigned int tmp;
+	unsigned int		tmp;
 
 	tmp = (a >> 12) + 224;
 	ft_putchar(tmp);
@@ -27,7 +39,7 @@ int						three_oct(unsigned int a)
 
 int						four_oct(unsigned int a)
 {
-	unsigned int tmp;
+	unsigned int		tmp;
 
 	tmp = (a >> 18) + 240;
 	ft_putchar(tmp);
@@ -42,10 +54,9 @@ int						four_oct(unsigned int a)
 	return (4);
 }
 
-
 int						size_bin(unsigned int chr)
 {
-	int	i;
+	int					i;
 
 	i = 0;
 	while (chr)

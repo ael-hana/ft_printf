@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/11 22:40:52 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 18:33:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,32 @@ t_list_p		*ft_init_list(t_list_p *list)
 	return (list);
 }
 
-void			ft_prec(char **str, t_list_p *list)
+void			ft_prec(char **str, t_list_p *ptr, char op)
 {
-	if (**str == '.')
+	if (!op && **str == '.' && (ptr->prec_i = 1))
 	{
-		list->prec_i = 1;
-		list->prec = ft_atoi(++*str);
+		ptr->prec = ft_atoi(++*str);
 		while (ft_isdigit(**str))
 			(*str)++;
+	}
+	if (op && (ft_isdigit(**str) || (*(*str - ptr->d) == '-' &&
+				ft_isdigit(*(*str - ptr->d) + 1))))
+	{
+		if (*(*str - ptr->d) == '-' && ft_isdigit(*((*str - ptr->d) + 1)))
+			*str = (*str - ptr->d);
+		while (**str == '0')
+		{
+			ptr->chr++;
+			(*str)++;
+		}
+		if (!ptr->p && (ptr->p = **str == '+' ? 1 : 0))
+			*str += ptr->p;
+		ptr->modifi_atoi = ft_atoi(*str);
+		if (!ft_strchr("sSpdDioOuUxXcC%", **str))
+			*str += ptr->modifi_atoi < 0 ?
+			(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
+			ft_putnbr_ulong_len(ptr->modifi_atoi);
+		ptr->chr = ptr->modifi_atoi < 0 ? 0 : ptr->chr;
 	}
 }
 
@@ -54,47 +72,8 @@ t_list_p		*ft_check_op(char **str, t_list_p *ptr)
 	return (ptr);
 }
 
-t_list_p		*ft_fill_list(char **str, t_list_p *list)
+void			ft_zebiduzebi(char **str, t_list_p *ptr)
 {
-	t_list_p	*ptr;
-
-	if (list)
-		free(list);
-	if (!(ptr = (t_list_p *)malloc(sizeof(t_list_p))))
-		ft_error();
-	ptr = ft_init_list(ptr);
-	(*str)++;
-	ptr = ft_check_op(str, ptr);
-	ft_prec(str, ptr);
-	if (ft_isdigit(**str) || (*(*str - ptr->d) == '-' && ft_isdigit(*(*str - ptr->d) + 1)))
-	{
-		if (*(*str - ptr->d) == '-' && ft_isdigit(*((*str - ptr->d) + 1)))
-			*str = (*str - ptr->d);
-		while (**str == '0')
-		{
-			ptr->chr++;
-			(*str)++;
-		}
-		if (!ptr->p && (ptr->p = **str == '+' ? 1 : 0))
-		*str += ptr->p;
-		ptr->modifi_atoi = ft_atoi(*str);
-		if (!ft_strchr("sSpdDioOuUxXcC%", **str))
-			*str += ptr->modifi_atoi < 0 ?
-			(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
-			ft_putnbr_ulong_len(ptr->modifi_atoi);
-		ptr->chr = ptr->modifi_atoi < 0 ? 0 : ptr->chr;
-	}
-	if (!ptr->modifi_atoi && ft_isdigit(**str))
-	{
-			ptr->modifi_atoi = ft_atoi(*str);
-		if (!ft_strchr("sSpdDioOuUxXcC%", **str))
-			*str += ptr->modifi_atoi < 0 ?
-				(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
-				ft_putnbr_ulong_len(ptr->modifi_atoi);
-	}
-	if (!ft_strchr("sSpdDioOuUxXcC%", **str))
-		ptr = ft_check_op(str, ptr);
-	ft_prec(str, ptr);
 	while (**str == 'l')
 	{
 		ptr->modifi_l++;
@@ -120,5 +99,32 @@ t_list_p		*ft_fill_list(char **str, t_list_p *list)
 		ptr->modifi_z++;
 		(*str)++;
 	}
+}
+
+t_list_p		*ft_fill_list(char **str, t_list_p *list)
+{
+	t_list_p	*ptr;
+
+	if (list)
+		free(list);
+	if (!(ptr = (t_list_p *)malloc(sizeof(t_list_p))))
+		ft_error();
+	ptr = ft_init_list(ptr);
+	(*str)++;
+	ptr = ft_check_op(str, ptr);
+	ft_prec(str, ptr, 0);
+	ft_prec(str, ptr, 1);
+	if (!ptr->modifi_atoi && ft_isdigit(**str))
+	{
+		ptr->modifi_atoi = ft_atoi(*str);
+		if (!ft_strchr("sSpdDioOuUxXcC%", **str))
+			*str += ptr->modifi_atoi < 0 ?
+				(ft_putnbr_ulong_len(ptr->modifi_atoi * -1) + 1) :
+				ft_putnbr_ulong_len(ptr->modifi_atoi);
+	}
+	if (!ft_strchr("sSpdDioOuUxXcC%", **str))
+		ptr = ft_check_op(str, ptr);
+	ft_prec(str, ptr, 0);
+	ft_zebiduzebi(str, ptr);
 	return (ptr);
 }
