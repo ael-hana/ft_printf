@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 16:19:52 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 16:30:30 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int			main(void)
 	int	ok;
 	setlocale(LC_ALL, "en_US.UTF-8");
 	int	str = 4242;
-	char *string = "{%-10.5d}";
+	char *string = "{%.d}";
 
 	ft_putstr("les params : \n");
 	ft_putstr(string);
