@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 21:11:59 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/12 23:59:58 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,21 +94,4 @@ int							ft_foret_de_if_2_ft_print_num_d_nega(unsigned long
 							long int num, t_list_p *list);
 int							ft_putnbr_ulong(unsigned long long int num,
 							t_list_p *list);
-tab_f						*oklm[] = {
-							&ft_putstr_ret_len,//%s
-							&ft_printf_op_s_unicode,//%S
-							&ft_printf_p,//%p
-							&ft_print_num_d,//%d
-							&ft_print_num_d_height_long,//%D
-							&ft_print_num_d,//%i
-							&ft_print_op_o,//%o
-							&ft_print_op_o_great,//%O
-							&ft_print_num_d_height_u_int,//u
-							&ft_print_num_d_height_u_long,//U
-							&ft_print_op_x,//x
-							&ft_print_op_x_great,//X
-							&ft_print_chr,//c
-							&ft_printf_op_c_unicode,//%C
-							&ft_printf_poucent
-							};
 #endif
