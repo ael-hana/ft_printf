@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 20:06:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 20:44:22 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:06:26 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,33 @@ int							ft_foret_de_if_2_ft_print_num_d_nega(unsigned long
 	i += list->chr ? ft_putnbr_ulong(num, list) : write(1, "-", 1) +
 		ft_putnbr_ulong(num, list);
 	return (i + ft_write_space((tmp2 + i) * -1, list));
+}
+
+void						ft_error(void)
+{
+	exit(EXIT_FAILURE);
+}
+
+tab_f						**ft_init_tab_func(void)
+{
+	tab_f					**oklm;
+
+	if (!(oklm = malloc(sizeof(tab_f**) * 15)))
+		ft_error();
+	oklm[0] = &ft_putstr_ret_len;
+	oklm[1] = &ft_printf_op_s_unicode;
+	oklm[2] = &ft_printf_p;
+	oklm[3] = &ft_print_num_d;
+	oklm[4] = &ft_print_num_d_height_long;
+	oklm[5] = &ft_print_num_d;
+	oklm[6] = &ft_print_op_o;
+	oklm[7] = &ft_print_op_o_great;
+	oklm[8] = &ft_print_num_d_height_u_int;
+	oklm[9] = &ft_print_num_d_height_u_long;
+	oklm[10] = &ft_print_op_x;
+	oklm[11] = &ft_print_op_x_great;
+	oklm[12] = &ft_print_chr;
+	oklm[13] = &ft_printf_op_c_unicode;
+	oklm[14] = &ft_printf_poucent;
+	return (oklm);
 }

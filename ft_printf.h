@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 23:59:58 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:02:08 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ int							ft_foret_de_if_2_ft_print_num_d_nega(unsigned long
 							long int num, t_list_p *list);
 int							ft_putnbr_ulong(unsigned long long int num,
 							t_list_p *list);
+tab_f						**ft_init_tab_func(void);
 #endif
