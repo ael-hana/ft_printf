@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 05:22:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/13 01:02:11 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:38:12 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				ft_printf_print(char **format, int len, t_list_p *list)
 	return (len);
 }
 
-void			ft_init_var(int *len, t_list_p **list, tab_f ***oklm, int op)
+void			ft_init_var(int *len, t_list_p **list, t_tab_f ***oklm, int op)
 {
 	if (op)
 	{
@@ -82,7 +82,7 @@ int				ft_printf(const char *format, ...)
 	t_list_p	*list;
 	int			len;
 	va_list		ap;
-	tab_f		**oklm;
+	t_tab_f		**oklm;
 
 	ft_init_var(&len, &list, &oklm, 1);
 	va_start(ap, format);

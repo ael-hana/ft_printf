@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 19:46:37 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:15:42 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int							ft_print_op_o(t_list_p *list, void *params)
 	list->prec = 0;
 	tmp2 = list->modifi_atoi;
 	if (!(num || list->modifi_atoi || list->modifi_h ||
-				list->modifi_L || list->modifi_j || list->modifi_z
+				list->modifi_j || list->modifi_z
 				|| tmp || list->dize || list->p) && list->prec_i)
 		return (i);
 	i += ft_write_space(tmp - ft_len_base(num, 8), list) +

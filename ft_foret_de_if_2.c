@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 20:06:35 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/13 01:06:26 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:39:40 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void						ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-tab_f						**ft_init_tab_func(void)
+t_tab_f						**ft_init_tab_func(void)
 {
-	tab_f					**oklm;
+	t_tab_f					**oklm;
 
-	if (!(oklm = malloc(sizeof(tab_f**) * 15)))
+	if (!(oklm = malloc(sizeof(t_tab_f**) * 15)))
 		ft_error();
 	oklm[0] = &ft_putstr_ret_len;
 	oklm[1] = &ft_printf_op_s_unicode;

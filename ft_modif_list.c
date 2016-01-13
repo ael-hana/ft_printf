@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 04:33:33 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/12 18:33:59 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:17:54 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_list_p		*ft_init_list(t_list_p *list)
 {
 	list->modifi_atoi = 0;
 	list->modifi_l = 0;
-	list->modifi_L = 0;
 	list->modifi_h = 0;
 	list->modifi_j = 0;
 	list->modifi_z = 0;
@@ -74,7 +73,7 @@ t_list_p		*ft_check_op(char **str, t_list_p *ptr)
 
 void			ft_zebiduzebi(char **str, t_list_p *ptr)
 {
-	while (**str == 'l')
+	while (**str == 'l' || **str == 'L')
 	{
 		ptr->modifi_l++;
 		(*str)++;
@@ -82,11 +81,6 @@ void			ft_zebiduzebi(char **str, t_list_p *ptr)
 	while (**str == 'h')
 	{
 		ptr->modifi_h++;
-		(*str)++;
-	}
-	while (**str == 'L')
-	{
-		ptr->modifi_L++;
 		(*str)++;
 	}
 	while (**str == 'j')
