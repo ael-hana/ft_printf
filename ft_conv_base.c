@@ -6,17 +6,17 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 20:07:16 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/13 01:15:42 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:50:56 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 int							ft_printf_base(unsigned long long int num, int base,
-							unsigned int i, char opt)
+	unsigned int i, char opt)
 {
-	char					*str;
-	char					*str2;
+	char	*str;
+	char	*str2;
 
 	str = "0123456789ABCDEFGHIJKLMNOP";
 	str2 = "0123456789abcdefghijklmnop";
